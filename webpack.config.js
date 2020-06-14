@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-const { join, resolve } = require('path');
+const {join, resolve} = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
@@ -30,9 +30,9 @@ module.exports = function (env, args) {
         plugins: [
             new CopyWebpackPlugin({
                 patterns: [
-                    { from: './src/assets/icons/favicon.ico', to: './' },
-                    { from: './src/assets/icons/favicon16x16.png', to: './' },
-                    { from: './src/assets/icons/favicon32x32.png', to: './' },
+                    {from: './src/assets/icons/favicon.ico', to: './'},
+                    {from: './src/assets/icons/favicon16x16.png', to: './'},
+                    {from: './src/assets/icons/favicon32x32.png', to: './'},
                 ],
             }),
 
@@ -49,6 +49,15 @@ module.exports = function (env, args) {
             }),
             new webpack.EnvironmentPlugin({
                 NODE_ENV: 'development',
+                VERSION: appVersion,
+                FIREBASE_APPID: '',
+                FIREBASE_AUTHDOMAIN: '',
+                FIREBASE_DATABASEURL: '',
+                FIREBASE_PROJECTID: '',
+                FIREBASE_STORAGEBUCKET: '',
+                FIREBASE_MESSAGINGSENDERID: '',
+                FIREBASE_MEASUREMENTID: '',
+                FIREBASE_API_KEY: '',
             }),
             new webpack.DefinePlugin({
                 __VERSION__: JSON.stringify(appVersion),
@@ -60,7 +69,7 @@ module.exports = function (env, args) {
                 title: 'react-firebase-ssr',
                 favicon: resolve(srcFolder, 'assets/icons/favicon.ico'),
                 template: resolve(__dirname, 'src', 'index.ejs'),
-                minify: { collapseWhitespace: true },
+                minify: {collapseWhitespace: true},
                 inlineSource: 'runtime.+\\.js',
             }),
             new FaviconsWebpackPlugin({
@@ -149,7 +158,7 @@ module.exports = function (env, args) {
                         },
                         {
                             loader: 'css-loader',
-                            options: { sourceMap: true, modules: false },
+                            options: {sourceMap: true, modules: false},
                         },
                         {
                             loader: 'postcss-loader',
@@ -164,7 +173,7 @@ module.exports = function (env, args) {
                     test: /\.(gif|png|jpe?g)$/i,
                     use: {
                         loader: 'file-loader',
-                        query: { outputPath: 'assets/images/' },
+                        query: {outputPath: 'assets/images/'},
                     },
                 },
                 {

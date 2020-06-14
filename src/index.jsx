@@ -5,7 +5,6 @@
 import React from "react";
 import { render } from "react-dom";
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
-import 'mobx-react-lite/batchingForReactDom';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import App from './App';
