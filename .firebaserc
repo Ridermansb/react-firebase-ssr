@@ -1,0 +1,5 @@
+{
+  "projects": {
+    "default": "template-react-firebase-ssr"
+  }
+}
