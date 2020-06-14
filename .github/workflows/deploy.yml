@@ -1,0 +1,126 @@
+name: deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.versionGenerator.outputs.version }}
+    steps:
+    - uses: actions/setup-node@v2-beta
+      with:
+        node-version: '10'
+
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      
+    # Cache node_modules
+    - name: Cache node_modules
+      id: cache-node_modules
+      uses: actions/cache@v2.0.0
+      with:
+        path: |
+          ~/.npm
+          node_modules
+          **/node_modules
+          ${{ steps.npm-cache.outputs.dir }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: ${{ runner.os }}-node-      
+    
+    # Cache functions/node_modules
+    - name: Cache functions node_modules
+      id: cache-functions-node_modules
+      uses: actions/cache@v2.0.0
+      with:
+        path: functions/node_modules
+        key: ${{ runner.os }}-node-functions-${{ hashFiles('functions/package-lock.json') }}
+        restore-keys: ${{ runner.os }}-node-functions-
+    
+    - name: Install dependencies
+      if: steps.cache-node_modules.outputs.cache-hit != 'true' || steps.cache-functions-node_modules.outputs.cache-hit != 'true'
+      run: |
+        npm ci --prefer-offline --no-audit --progress=false
+        cd functions && npm ci --prefer-offline --no-audit --progress=false && cd ..
+
+    - name: Generate version
+      id: versionGenerator
+      run: echo ::set-output name=version::$(git describe --tags --always)
+      
+    - name: Build PWA
+      env:
+          FIREBASE_APPID: ${{ secrets.FIREBASE_APPID }}
+          FIREBASE_AUTHDOMAIN: ${{ secrets.FIREBASE_AUTHDOMAIN }}
+          FIREBASE_DATABASEURL: ${{ secrets.FIREBASE_DATABASEURL }}
+          FIREBASE_PROJECTID: ${{ secrets.FIREBASE_PROJECTID }}
+          FIREBASE_STORAGEBUCKET: ${{ secrets.FIREBASE_STORAGEBUCKET }}
+          FIREBASE_MESSAGINGSENDERID: ${{ secrets.FIREBASE_MESSAGINGSENDERID }}
+          FIREBASE_MEASUREMENTID: ${{ secrets.FIREBASE_MEASUREMENTID }}
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          VERSION: ${{ steps.versionGenerator.outputs.version }}
+      run: rm -rf dist/ && NODE_ENV=production npm run build
+
+      # Cache dist
+    - name: Cache dist
+      id: cache-dist
+      uses: actions/cache@v2.0.0
+      with:
+        path: dist
+        key: ${{ runner.os }}-dist-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ steps.versionGenerator.outputs.version }}
+        restore-keys: ${{ runner.os }}-dist-${{ steps.versionGenerator.outputs.version }}
+        
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v2
+
+      # Cache node_modules
+    - name: Cache node_modules
+      id: cache-node_modules
+      uses: actions/cache@v2.0.0
+      with:
+        path: |
+          ~/.npm
+          node_modules
+          **/node_modules
+          ${{ steps.npm-cache.outputs.dir }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: ${{ runner.os }}-node-      
+
+      # Cache functions/node_modules
+    - name: Cache functions node_modules
+      id: cache-functions-node_modules
+      uses: actions/cache@v2.0.0
+      with:
+        path: functions/node_modules
+        key: ${{ runner.os }}-node-functions-${{ hashFiles('functions/package-lock.json') }}
+        restore-keys: ${{ runner.os }}-node-functions-
+          
+      # Cache dist
+    - name: Cache dist
+      id: cache-dist
+      uses: actions/cache@v2.0.0
+      with:
+        path: dist
+        key: ${{ runner.os }}-dist-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ needs.build.outputs.version }}
+        restore-keys: ${{ runner.os }}-dist-${{ needs.build.outputs.version }}
+        
+    - name: Install dependencies
+      if: steps.cache-node_modules.outputs.cache-hit != 'true' || steps.cache-functions-node_modules.outputs.cache-hit != 'true'
+      run: |
+        npm ci --prefer-offline --no-audit --progress=false
+        cd functions && npm ci --prefer-offline --no-audit --progress=false && cd ..
+        
+    - name: Deploy to Firebase
+      uses: w9jds/firebase-action@v1.3.1
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
+        PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
+      with:
+        args: deploy --non-interactive -m \"from Github Action ${{ needs.build.outputs.version }} by $GITHUB_ACTOR from $GITHUB_WORKFLOW\"
