@@ -1,0 +1,19 @@
+body {
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    background-color: #1e87f0;
+    /* Status bar height on iOS 11.0 */
+    padding-top: constant(safe-area-inset-top);
+    /* Status bar height on iOS 11+ */
+    padding-top: env(safe-area-inset-top);
+
+    /* Status bar height on iOS 11.0 */
+    padding-bottom: constant(safe-area-inset-bottom);
+    /* Status bar height on iOS 11+ */
+    padding-bottom: env(safe-area-inset-bottom);
+}

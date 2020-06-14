@@ -1,0 +1,12 @@
+[production]
+cover 99.5% in BR
+ios_saf >= 8
+not dead
+not ie > 0
+not ie_mob > 0
+safari >= 7
+chrome >= 52
+
+[development]
+last 2 versions
+not dead
