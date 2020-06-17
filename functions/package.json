@@ -2,9 +2,6 @@
     "name": "functions",
     "description": "Cloud Functions for Firebase",
     "scripts": {
-        "start:emulators": "firebase emulators:start --only functions",
-        "start": "firebase serve --only functions,hosting",
-        "shell": "firebase functions:shell",
         "build": "cross-env NODE_ENV=production webpack -p"
     },
     "main": "dist/index.js",

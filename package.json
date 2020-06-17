@@ -5,9 +5,10 @@
     "main": "index.js",
     "scripts": {
         "createfirebaseconf": "firebase setup:web --json > ../functions/firebase-config.json",
-        "start": "webpack-dev-server",
-        "start:serve": "firebase serve --only functions,hosting",
         "start:emulators": "firebase emulators:start --only functions,hosting",
+        "start:serve": "firebase serve --only functions,hosting",
+        "shell": "firebase functions:shell",
+        "start": "webpack-dev-server",
         "build": "cross-env NODE_ENV=production webpack -p",
         "test": "npm test"
     },
