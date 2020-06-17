@@ -22,7 +22,7 @@ module.exports = (currentVersion) => {
             filename: '[name]-[contenthash:8].js',
             chunkFilename: '[name]-[chunkhash].js',
             // publicPath: '/',
-            publicPath: process.env.FIREBASE_PUBLIC_PATH,
+            publicPath: process.env.PUBLIC_PATH,
             sourceMapFilename: '[name]-[hash].js.map',
             pathinfo: false,
             libraryTarget: 'umd',

@@ -61,7 +61,7 @@ jobs:
           FIREBASE_MESSAGINGSENDERID: ${{ secrets.FIREBASE_MESSAGINGSENDERID }}
           FIREBASE_MEASUREMENTID: ${{ secrets.FIREBASE_MEASUREMENTID }}
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-          FIREBASE_PUBLIC_PATH: ${{ secrets.FIREBASE_PUBLIC_PATH }}
+          PUBLIC_PATH: ${{ secrets.PUBLIC_PATH }}
           VERSION: ${{ steps.versionGenerator.outputs.version }}
       run: NODE_ENV=production npm run build      
     
@@ -148,4 +148,4 @@ jobs:
         GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
         PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
       with:
-        args: deploy --non-interactive -m \"from Github Action ${{ needs.build.outputs.version }} by $GITHUB_ACTOR from $GITHUB_WORKFLOW\"
+        args: deploy --non-interactive -m \"v${{ needs.build.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
