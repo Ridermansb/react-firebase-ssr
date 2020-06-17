@@ -79,6 +79,15 @@ jobs:
         path: public
         key: ${{ runner.os }}-public-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ steps.versionGenerator.outputs.version }}
         restore-keys: ${{ runner.os }}-public-${{ steps.versionGenerator.outputs.version }}
+      
+      # Cache dist
+    - name: Cache dist
+      id: cache-dist
+      uses: actions/cache@v2.0.0
+      with:
+        path: functions/dist
+        key: ${{ runner.os }}-dist-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ steps.versionGenerator.outputs.version }}
+        restore-keys: ${{ runner.os }}-dist-${{ steps.versionGenerator.outputs.version }}
         
   deploy:
     runs-on: ubuntu-latest
@@ -116,6 +125,15 @@ jobs:
         path: public
         key: ${{ runner.os }}-public-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ needs.build.outputs.version }}
         restore-keys: ${{ runner.os }}-public-${{ needs.build.outputs.version }}
+
+      # Cache dist
+    - name: Cache dist
+      id: cache-dist
+      uses: actions/cache@v2.0.0
+      with:
+        path: functions/dist
+        key: ${{ runner.os }}-dist-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ steps.versionGenerator.outputs.version }}
+        restore-keys: ${{ runner.os }}-dist-${{ steps.versionGenerator.outputs.version }}
         
     - name: Install dependencies
       if: steps.cache-node_modules.outputs.cache-hit != 'true' || steps.cache-functions-node_modules.outputs.cache-hit != 'true'
