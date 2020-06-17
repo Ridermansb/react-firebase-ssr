@@ -8,7 +8,7 @@ const compression = require('compression');
 const { renderToString } = require('react-dom/server');
 const App = require('../../src/App').default;
 
-const publicFolder = path.resolve('public')
+const publicFolder = path.resolve('../public')
 
 const app = express();
 app.use(compression({ threshold: 0 }))
