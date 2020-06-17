@@ -8,7 +8,7 @@ const compression = require('compression');
 const { renderToString } = require('react-dom/server');
 const App = require('../../src/App').default;
 
-const publicFolder = path.resolve('../public')
+const publicFolder = path.resolve(process.cwd(), '../public')
 
 console.log('__dirname %s', __dirname);
 console.log('wd %s', process.cwd());
