@@ -8,9 +8,9 @@ import weekOfYear from 'dayjs/plugin/weekOfYear';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import isBetween from 'dayjs/plugin/isBetween';
 import Icons from 'uikit/dist/js/uikit-icons';
-// import 'uikit/dist/css/uikit.css';
+import 'uikit/dist/css/uikit.css';
 import Time from "@components/Time";
-// import './assets/style.css';
+import './assets/style.css';
 
 UIkit.use(Icons);
 

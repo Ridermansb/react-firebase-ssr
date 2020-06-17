@@ -37,15 +37,16 @@ module.exports = function (env, args) {
                 ],
             }),
             new MiniCssExtractPlugin({
+                publicPath: 'styles/',
                 ignoreOrder: true,
                 filename:
                     mode === 'production'
-                        ? 'styles/[name]-[contenthash].css'
-                        : 'styles/[name].css',
+                        ? '[name]-[contenthash].css'
+                        : '[name].css',
                 chunkFilename:
                     mode === 'production'
-                        ? 'styles/[id]-[contenthash].css'
-                        : 'styles/[id].css',
+                        ? '[id]-[contenthash].css'
+                        : '[id].css',
             }),
             new webpack.EnvironmentPlugin({
                 NODE_ENV: 'development',
@@ -152,7 +153,8 @@ module.exports = function (env, args) {
                             loader: MiniCssExtractPlugin.loader,
                             options: {
                                 hmr: false, // mode !== 'production' || process.env.NODE_ENV === 'development',
-                                esModule: false,
+                                esModule: true,
+                                reloadAll: true,
                             },
                         },
                         {

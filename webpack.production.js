@@ -101,6 +101,11 @@ module.exports = (currentVersion) => {
                     extractComments: false,
                 }),
                 new OptimizeCSSAssetsPlugin({
+                    cssProcessor: require('cssnano'),
+                    cssProcessorPluginOptions: {
+                        preset: ['default', { discardComments: { removeAll: true } }],
+                    },
+                    canPrint: true,
                     cssProcessorOptions: {
                         parser: safePostCssParser,
                         map: {

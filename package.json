@@ -8,7 +8,7 @@
         "start": "webpack-dev-server",
         "start:serve": "firebase serve --only functions,hosting",
         "start:emulators": "firebase emulators:start --only functions,hosting",
-        "build:client": "cross-env NODE_ENV=production webpack -p",
+        "build": "cross-env NODE_ENV=production webpack -p",
         "test": "npm test"
     },
     "repository": {

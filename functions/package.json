@@ -28,6 +28,7 @@
         "@babel/preset-env": "^7.10.2",
         "cross-env": "^7.0.2",
         "firebase-functions-test": "^0.2.0",
+        "ignore-loader": "^0.1.2",
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.11",
         "webpack-node-externals": "^1.7.2"

@@ -61,17 +61,24 @@ jobs:
           FIREBASE_MESSAGINGSENDERID: ${{ secrets.FIREBASE_MESSAGINGSENDERID }}
           FIREBASE_MEASUREMENTID: ${{ secrets.FIREBASE_MEASUREMENTID }}
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          FIREBASE_PUBLIC_PATH: ${{ secrets.FIREBASE_PUBLIC_PATH }}
           VERSION: ${{ steps.versionGenerator.outputs.version }}
-      run: rm -rf dist/ && NODE_ENV=production npm run build
+      run: NODE_ENV=production npm run build      
+    
+    - name: Build SSR
+      env:
+          VERSION: ${{ steps.versionGenerator.outputs.version }}
+      run: NODE_ENV=production npm run build
+      working-directory: ./functions
 
-      # Cache dist
-    - name: Cache dist
-      id: cache-dist
+      # Cache public
+    - name: Cache public
+      id: cache-public
       uses: actions/cache@v2.0.0
       with:
-        path: dist
-        key: ${{ runner.os }}-dist-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ steps.versionGenerator.outputs.version }}
-        restore-keys: ${{ runner.os }}-dist-${{ steps.versionGenerator.outputs.version }}
+        path: public
+        key: ${{ runner.os }}-public-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ steps.versionGenerator.outputs.version }}
+        restore-keys: ${{ runner.os }}-public-${{ steps.versionGenerator.outputs.version }}
         
   deploy:
     runs-on: ubuntu-latest
@@ -101,14 +108,14 @@ jobs:
         key: ${{ runner.os }}-node-functions-${{ hashFiles('functions/package-lock.json') }}
         restore-keys: ${{ runner.os }}-node-functions-
           
-      # Cache dist
-    - name: Cache dist
-      id: cache-dist
+      # Cache public
+    - name: Cache public
+      id: cache-public
       uses: actions/cache@v2.0.0
       with:
-        path: dist
-        key: ${{ runner.os }}-dist-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ needs.build.outputs.version }}
-        restore-keys: ${{ runner.os }}-dist-${{ needs.build.outputs.version }}
+        path: public
+        key: ${{ runner.os }}-public-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ needs.build.outputs.version }}
+        restore-keys: ${{ runner.os }}-public-${{ needs.build.outputs.version }}
         
     - name: Install dependencies
       if: steps.cache-node_modules.outputs.cache-hit != 'true' || steps.cache-functions-node_modules.outputs.cache-hit != 'true'
