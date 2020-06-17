@@ -18,7 +18,7 @@ module.exports = (currentVersion) => {
         devtool: 'hidden-source-map',
         entry: srcFolder,
         output: {
-            path: resolve('public'),
+            path: resolve('functions/public'),
             filename: '[name]-[contenthash:8].js',
             chunkFilename: '[name]-[chunkhash].js',
             // publicPath: '/',

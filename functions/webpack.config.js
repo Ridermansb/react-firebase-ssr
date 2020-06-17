@@ -12,8 +12,8 @@ const GitRevisionPlugin = require('git-revision-webpack-plugin');
  */
 const gitRevisionPlugin = new GitRevisionPlugin();
 
-const srcFolder = resolve(__dirname, 'src');
-const srcClientFolder = resolve(__dirname, '../src');
+const srcFolder = resolve('src');
+const srcClientFolder = resolve('../src');
 
 module.exports = function (env, args) {
     const mode = args.mode || 'development'
@@ -22,7 +22,6 @@ module.exports = function (env, args) {
 
     return {
         target: 'node',
-        context: __dirname,
         entry: {
             index: srcFolder
         },
