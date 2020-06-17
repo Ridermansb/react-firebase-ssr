@@ -10,6 +10,8 @@ const App = require('../../src/App').default;
 
 const publicFolder = path.resolve('../public')
 
+console.log('Public folder is %s', publicFolder);
+
 const app = express();
 app.use(compression({ threshold: 0 }))
 app.use(cors({origin: true}));

@@ -18,11 +18,10 @@ module.exports = (currentVersion) => {
         devtool: 'hidden-source-map',
         entry: srcFolder,
         output: {
-            path: resolve('functions/public'),
+            path: resolve('public'),
             filename: '[name]-[contenthash:8].js',
             chunkFilename: '[name]-[chunkhash].js',
-            // publicPath: '/',
-            publicPath: process.env.PUBLIC_PATH,
+            publicPath: process.env.PUBLIC_PATH || '/',
             sourceMapFilename: '[name]-[hash].js.map',
             pathinfo: false,
             libraryTarget: 'umd',

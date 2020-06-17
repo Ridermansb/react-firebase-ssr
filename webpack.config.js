@@ -12,14 +12,15 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const webpackDevelopmentConfig = require('./webpack.development.js')
 const webpackProductionConfig = require('./webpack.production.js')
 
+require('dotenv').config();
+
 /**
  * Assume verion as git describe
  * @see https://medium.com/bind-solution/dynamic-version-update-with-git-describe-477e8cd2a306
  */
+const gitRevisionPlugin = new GitRevisionPlugin();
 
 const srcFolder = resolve(__dirname, 'src');
-
-const gitRevisionPlugin = new GitRevisionPlugin();
 
 module.exports = function (env, args) {
     const mode = args.mode || 'development'
@@ -66,7 +67,7 @@ module.exports = function (env, args) {
                 __PRODUCTION__: JSON.stringify(mode === 'production'),
             }),
             new HtmlWebpackPlugin({
-                filename: 'assets/index.html',
+                filename: 'index.html',
                 title: 'react-firebase-ssr',
                 favicon: resolve(srcFolder, 'assets/icons/favicon.ico'),
                 template: resolve(__dirname, 'src', 'index.ejs'),
@@ -187,7 +188,7 @@ module.exports = function (env, args) {
             // Examine all modules
             maxModules: Infinity,
             // Display bailout reasons
-            optimizationBailout: true,
+            // optimizationBailout: true,
         },
     };
 

@@ -5,8 +5,6 @@ const { resolve, join } = require('path');
 const host = '0.0.0.0';
 const port = 7003;
 
-require('dotenv').config();
-
 const srcFolder = resolve(__dirname, 'src');
 
 module.exports = {
