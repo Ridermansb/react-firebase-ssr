@@ -10,6 +10,8 @@ const App = require('../../src/App').default;
 
 const publicFolder = path.resolve('../public')
 
+console.log('__dirname %s', __dirname);
+console.log('wd %s', process.cwd());
 console.log('Public folder is %s', publicFolder);
 
 const app = express();
@@ -18,9 +20,7 @@ app.use(cors({origin: true}));
 
 // app.use(express.static('public'))
 // app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
-app.use(
-    express.static(publicFolder, { maxAge: '30d' })
-)
+app.use(express.static(publicFolder, { maxAge: '30d' }))
 
 // const htmlIndex = fs.readFileSync('index.html', 'utf8'); 
 const htmlIndex = fs.readFileSync(path.join(publicFolder, 'assets/index.html'), 'utf8');

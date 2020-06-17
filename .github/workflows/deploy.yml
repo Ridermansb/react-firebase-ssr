@@ -41,17 +41,20 @@ jobs:
         key: ${{ runner.os }}-node-functions-${{ hashFiles('functions/package-lock.json') }}
         restore-keys: ${{ runner.os }}-node-functions-
     
-    - name: Install dependencies
-      if: steps.cache-node_modules.outputs.cache-hit != 'true' || steps.cache-functions-node_modules.outputs.cache-hit != 'true'
-      run: |
-        npm ci --prefer-offline --no-audit --progress=false
-        cd functions && npm ci --prefer-offline --no-audit --progress=false && cd ..
+    - name: Install app dependencies
+      if: steps.cache-node_modules.outputs.cache-hit != 'true'
+      run: npm ci --prefer-offline --no-audit --progress=false
+    
+    - name: Install functions dependencies
+      if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
+      run: npm ci --prefer-offline --no-audit --progress=false
+      working-directory: ./functions
 
     - name: Generate version
       id: versionGenerator
       run: echo ::set-output name=version::$(git describe --tags --always)
       
-    - name: Build PWA
+    - name: Build app
       env:
           FIREBASE_APPID: ${{ secrets.FIREBASE_APPID }}
           FIREBASE_AUTHDOMAIN: ${{ secrets.FIREBASE_AUTHDOMAIN }}
@@ -65,7 +68,7 @@ jobs:
           VERSION: ${{ steps.versionGenerator.outputs.version }}
       run: NODE_ENV=production npm run build      
     
-    - name: Build SSR
+    - name: Build functions
       env:
           VERSION: ${{ steps.versionGenerator.outputs.version }}
       run: NODE_ENV=production npm run build
@@ -135,15 +138,19 @@ jobs:
         key: ${{ runner.os }}-dist-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ steps.versionGenerator.outputs.version }}
         restore-keys: ${{ runner.os }}-dist-${{ steps.versionGenerator.outputs.version }}
         
-    - name: Install dependencies
-      if: steps.cache-node_modules.outputs.cache-hit != 'true' || steps.cache-functions-node_modules.outputs.cache-hit != 'true'
-      run: |
-        npm ci --prefer-offline --no-audit --progress=false
-        cd functions && npm ci --prefer-offline --no-audit --progress=false && cd ..
+    - name: Install app dependencies
+      if: steps.cache-node_modules.outputs.cache-hit != 'true'
+      run: npm ci --prefer-offline --no-audit --progress=false
+
+    - name: Install functions dependencies
+      if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
+      run: npm ci --prefer-offline --no-audit --progress=false
+      working-directory: ./functions
         
     - run: |
         pwd
         ls -la
+
     - name: Deploy to Firebase
       uses: w9jds/firebase-action@v1.3.1
       env:
