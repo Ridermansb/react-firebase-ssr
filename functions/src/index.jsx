@@ -16,16 +16,18 @@ app.use(cors({origin: true}));
 // app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
 app.use(express.static(publicFolder, { maxAge: '30d' }))
 
-// const htmlIndex = fs.readFileSync('index.html', 'utf8'); 
-
 const serverRenderer = (req, res) => {
     const publicFolder = path.resolve('../public')
     const indexHtmlPath = path.resolve(publicFolder, 'index.html');
+
+    const files = fs.readdirSync(publicFolder);
+    console.log('files', JSON.stringify(files));
 
     console.log('__dirname %s', __dirname);
     console.log('wd %s', process.cwd());
     console.log('Public folder is %s', publicFolder);
     console.log('indexHtmlPath %s', indexHtmlPath);
+    
 
     const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
     // res.set('Cache-Control', 'public, max-age=60, s-maxage=180');

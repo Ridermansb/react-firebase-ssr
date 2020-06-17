@@ -19,10 +19,10 @@
     },
     "emulators": {
         "functions": {
-            "port": 5001
+            "port": 8001
         },
         "hosting": {
-            "port": 5000
+            "port": 8000
         },
         "ui": {
             "enabled": true,
