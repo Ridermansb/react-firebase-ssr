@@ -8,11 +8,13 @@ const compression = require('compression');
 const { renderToString } = require('react-dom/server');
 const App = require('../../src/App').default;
 
-const publicFolder = path.resolve(process.cwd(), '../public')
+const publicFolder = path.resolve('../public')
+const indexHtmlPath = path.resolve(publicFolder, 'assets/index.html');
 
 console.log('__dirname %s', __dirname);
 console.log('wd %s', process.cwd());
 console.log('Public folder is %s', publicFolder);
+console.log('indexHtmlPath %s', indexHtmlPath);
 
 const app = express();
 app.use(compression({ threshold: 0 }))
@@ -23,7 +25,7 @@ app.use(cors({origin: true}));
 app.use(express.static(publicFolder, { maxAge: '30d' }))
 
 // const htmlIndex = fs.readFileSync('index.html', 'utf8'); 
-const htmlIndex = fs.readFileSync(path.join(publicFolder, 'assets/index.html'), 'utf8');
+const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
 
 const serverRenderer = (req, res) => {
     // res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
