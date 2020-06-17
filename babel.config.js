@@ -1,5 +1,5 @@
 module.exports = function (api) {
-    console.log(`Loading babel in ${api.env()} mode`);
+    console.log(`Loading client babel in ${api.env()} mode`);
     // noinspection SpellCheckingInspection
     return {
         presets: [
@@ -8,9 +8,9 @@ module.exports = function (api) {
                 {
                     modules: false,
                     loose: true,
-                    useBuiltIns: 'entry',
-                    corejs: 3,
-                    targets: {},
+                    // useBuiltIns: 'entry',
+                    // corejs: 3,
+                    // targets: {},
                 },
             ],
         ],
@@ -21,17 +21,17 @@ module.exports = function (api) {
                 '@babel/plugin-transform-arrow-functions',
                 { spec: true, loose: true },
             ],
-            [
-                '@babel/plugin-transform-runtime',
-                {
-                    absoluteRuntime: false,
-                    corejs: 3,
-                    helpers: true,
-                    regenerator: true,
-                    useESModules: false,
-                    version: '7.0.0-beta.0',
-                },
-            ],
+            // [
+            //     '@babel/plugin-transform-runtime',
+            //     {
+            //         absoluteRuntime: false,
+            //         corejs: 3,
+            //         helpers: true,
+            //         regenerator: true,
+            //         useESModules: false,
+            //         version: '7.0.0-beta.0',
+            //     },
+            // ],
             [
                 'module-resolver',
                 {
@@ -54,7 +54,6 @@ module.exports = function (api) {
             ],
             ['@babel/plugin-syntax-dynamic-import'],
             ['@babel/plugin-proposal-class-properties', { spec: true }],
-            ['transform-react-remove-prop-types'],
         ],
 
         env: {

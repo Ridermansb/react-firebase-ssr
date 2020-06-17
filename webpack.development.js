@@ -14,7 +14,7 @@ module.exports = {
     devtool: 'inline-source-map',
     entry: ['react-hot-loader/patch', srcFolder ],
     output: {
-        path: resolve('dist'),
+        path: resolve('public'),
         filename: '[name].js',
         chunkFilename: '[name].js',
         publicPath: '/',
@@ -27,7 +27,7 @@ module.exports = {
         },
     },
     devServer: {
-        contentBase: join(__dirname, 'dist'),
+        contentBase: join(__dirname, 'public'),
         publicPath: '/',
         disableHostCheck: true,
         compress: true,

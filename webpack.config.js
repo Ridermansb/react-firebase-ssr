@@ -5,10 +5,10 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
-const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const webpackDevelopmentConfig = require('./webpack.development.js')
 const webpackProductionConfig = require('./webpack.production.js')
 
@@ -16,9 +16,10 @@ const webpackProductionConfig = require('./webpack.production.js')
  * Assume verion as git describe
  * @see https://medium.com/bind-solution/dynamic-version-update-with-git-describe-477e8cd2a306
  */
-const gitRevisionPlugin = new GitRevisionPlugin();
 
 const srcFolder = resolve(__dirname, 'src');
+
+const gitRevisionPlugin = new GitRevisionPlugin();
 
 module.exports = function (env, args) {
     const mode = args.mode || 'development'
@@ -35,7 +36,6 @@ module.exports = function (env, args) {
                     {from: './src/assets/icons/favicon32x32.png', to: './'},
                 ],
             }),
-
             new MiniCssExtractPlugin({
                 ignoreOrder: true,
                 filename:
@@ -65,7 +65,7 @@ module.exports = function (env, args) {
                 __PRODUCTION__: JSON.stringify(mode === 'production'),
             }),
             new HtmlWebpackPlugin({
-                filename: 'index.html',
+                filename: 'assets/index.html',
                 title: 'react-firebase-ssr',
                 favicon: resolve(srcFolder, 'assets/icons/favicon.ico'),
                 template: resolve(__dirname, 'src', 'index.ejs'),
@@ -120,15 +120,14 @@ module.exports = function (env, args) {
                     },
                     {
                         src: resolve('src/assets/icons/maskable.png'),
-                        "sizes": "196x196",
-                        "type": "image/png",
-                        "purpose": "maskable"
+                        sizes: "196x196",
+                        type: "image/png",
+                        purpose: "maskable"
                     }
                 ],
             }),
             new webpack.HashedModuleIdsPlugin(),
         ],
-
         resolve: {
             extensions: ['.js', '.jsx'],
         },
@@ -147,7 +146,7 @@ module.exports = function (env, args) {
                 },
                 {
                     test: /\.css$/i,
-                    include: [resolve(srcFolder), /uikit/],
+                    include: [srcFolder, /uikit/],
                     use: [
                         {
                             loader: MiniCssExtractPlugin.loader,
