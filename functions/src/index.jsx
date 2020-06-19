@@ -1,4 +1,5 @@
 const functions = require('firebase-functions');
+// import {Helmet} from "react-helmet";
 const React = require('react');
 const path = require('path');
 const fs = require('fs');
@@ -17,11 +18,17 @@ const publicFolder = path.resolve('../public')
 const serverRenderer = (req, res) => {
     const indexHtmlPath = path.resolve(publicFolder, 'client.html');
     const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
+
     // res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
+    
+    const html = renderToString(<App />)
+    console.log('Rendering helmet ...', html);
+    // const helmet = Helmet.renderStatic();
+    // console.log('Helmet', helmet);
     return res.send(
         htmlIndex.replace(
             '<div id="root"></div>',
-            `<div id="root">${renderToString(<App />)}</div>`
+            `<div id="root">${html}</div> `
         )
     )
 }

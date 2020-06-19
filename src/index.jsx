@@ -3,7 +3,7 @@
 // go away once https://bugs.webkit.org/show_bug.cgi?id=183937 is fixed.
 // Another way to do https://github.com/emojityper/emojityper/blob/master/src/loader.js#L8
 import React from "react";
-import { hydrate } from "react-dom";
+import {hydrate} from "react-dom";
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -31,10 +31,13 @@ if (isSWAvailable && __PRODUCTION__) {
     });
 }
 
-document.body.addEventListener('touchstart', function () {}, {
+document.body.addEventListener('touchstart', function () {
+}, {
     passive: true,
 });
 
 const root = document.getElementById('root');
 
-hydrate(<App/>, root)
+hydrate(
+        <App/>
+    , root)
