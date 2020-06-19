@@ -67,7 +67,7 @@ module.exports = function (env, args) {
                 __PRODUCTION__: JSON.stringify(mode === 'production'),
             }),
             new HtmlWebpackPlugin({
-                filename: 'index.html',
+                filename: 'client.html',
                 title: 'react-firebase-ssr',
                 favicon: resolve(srcFolder, 'assets/icons/favicon.ico'),
                 template: resolve(__dirname, 'src', 'index.ejs'),

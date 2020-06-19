@@ -17,7 +17,7 @@ const publicFolder = path.resolve('../public')
 console.log('Public folder is "%s"', publicFolder);
 
 const serverRenderer = (req, res) => {
-    const indexHtmlPath = path.resolve(publicFolder, 'index.html');
+    const indexHtmlPath = path.resolve(publicFolder, 'client.html');
 
     const files = fs.readdirSync(publicFolder);
     console.log('files', JSON.stringify(files));
@@ -29,7 +29,7 @@ const serverRenderer = (req, res) => {
     
 
     const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
-    // res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
+    res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
     const html = renderToString(<App />);
     return res.send(
         htmlIndex.replace(
@@ -38,13 +38,14 @@ const serverRenderer = (req, res) => {
         )
     )
 }
-app.get('/', serverRenderer)
+app.get('**', serverRenderer)
 
 // app.use(express.static('public'))
 // app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
 app.use(express.static(publicFolder, { maxAge: '30d' }))
 
-const runtimeOpts = {
-    memory: '512MB'
-}
-exports.ssr = functions.runWith(runtimeOpts).https.onRequest(app);
+// const runtimeOpts = {
+//     memory: '512MB'
+// }
+// exports.ssr = functions.runWith(runtimeOpts).https.onRequest(app);
+exports.ssr = functions.https.onRequest(app);
