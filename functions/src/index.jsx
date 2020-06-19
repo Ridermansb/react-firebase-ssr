@@ -21,8 +21,8 @@ app.use(express.static(publicFolder, { maxAge: '30d' }))
 
 const serverRenderer = (req, res) => {
 
-    console.log('Version', process.env.VERSION);
-    console.log('publicFolder = ' + publicFolder);
+    console.warn('Version = ' + process.env.VERSION);
+    console.info('publicFolder = ' + publicFolder);
     
     const indexHtmlPath = path.join(publicFolder, 'client.html');
     const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
