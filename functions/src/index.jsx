@@ -13,7 +13,7 @@ const app = express();
 app.use(compression({ threshold: 0 }))
 app.use(cors({origin: true}));
 
-const publicFolder = path.resolve(__dirname, '../public');
+const publicFolder = path.resolve(__dirname, './public');
 
 // app.use(express.static('public'))
 // app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
@@ -48,7 +48,7 @@ app.get('**', serverRenderer)
 // ssr: functions.runWith(runtimeOpts).https.onRequest(app),
 exports.ssr = functions.https.onRequest(app);
 exports.listFiles = functions.https.onRequest((req, res) => {
-    fs.readdir(__dirname, (err, files) => {
+    fs.readdir(publicFolder, (err, files) => {
         if (err) {
             console.error(err);
             res.sendStatus(500);
