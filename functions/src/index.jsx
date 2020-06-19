@@ -13,9 +13,6 @@ app.use(compression({ threshold: 0 }))
 app.use(cors({origin: true}));
 
 const publicFolder = path.join(__dirname, '../public')
-// app.use(express.static('public'))
-// app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
-app.use(express.static(publicFolder, { maxAge: '30d' }))
 
 const serverRenderer = (req, res) => {
     const indexHtmlPath = path.resolve(publicFolder, 'index.html');
@@ -39,7 +36,11 @@ const serverRenderer = (req, res) => {
         )
     )
 }
-app.get('**', serverRenderer)
+app.get('/', serverRenderer)
+
+// app.use(express.static('public'))
+// app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
+app.use(express.static(publicFolder, { maxAge: '30d' }))
 
 const runtimeOpts = {
     memory: '512MB'

@@ -4,9 +4,7 @@
         "ignore": [
             "firebase.json",
             "**/.*",
-            "**/node_modules/**",
-            "index.html",
-            "**/*.map"
+            "**/node_modules/**"
         ],
         "cleanUrls": true,
         "trailingSlash": false,
