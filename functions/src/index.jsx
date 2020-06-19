@@ -38,8 +38,8 @@ app.get('**', serverRenderer)
 // app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
 app.use(express.static(publicFolder, { maxAge: '30d' }))
 
-// const runtimeOpts = {
-//     memory: '512MB'
-// }
-// exports.ssr = functions.runWith(runtimeOpts).https.onRequest(app);
-exports.ssr = functions.https.onRequest(app);
+const runtimeOpts = {
+    memory: '512MB'
+}
+exports.ssr = functions.runWith(runtimeOpts).https.onRequest(app);
+// exports.ssr = functions.https.onRequest(app);
