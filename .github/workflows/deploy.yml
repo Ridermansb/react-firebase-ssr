@@ -53,7 +53,11 @@ jobs:
     - name: Generate version
       id: versionGenerator
       run: echo ::set-output name=version::$(git describe --tags --always)
-      
+    
+    - run: |
+        rm -rf public
+        rm -rf functions/dist
+        
     - name: Build app
       env:
           FIREBASE_APPID: ${{ secrets.FIREBASE_APPID }}
