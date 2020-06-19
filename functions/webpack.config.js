@@ -48,7 +48,7 @@ module.exports = function (env, args) {
             }),
             new CopyWebpackPlugin({
                 patterns: [
-                    {from: '../public/**', to: '../public/' },
+                    {from: '../public/**', to: '../dist/public/' },
                 ],
             }),
             new webpack.DefinePlugin({
