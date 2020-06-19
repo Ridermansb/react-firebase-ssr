@@ -42,9 +42,9 @@ const serverRenderer = (req, res) => {
 }
 app.get('**', serverRenderer)
 
-const runtimeOpts = {
-    memory: '512MB'
-}
+// const runtimeOpts = {
+//     memory: '512MB'
+// }
 exports.h2p = {
     // ssr: functions.runWith(runtimeOpts).https.onRequest(app),
     ssr: functions.https.onRequest(app),
