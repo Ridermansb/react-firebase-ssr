@@ -33,7 +33,7 @@ module.exports = function (env, args) {
             path: resolve('dist'),
             filename: '[name].js',
             chunkFilename: '[name].js',
-            publicPath: '/',
+            publicPath: '/public',
             sourceMapFilename: '[name].js.map',
             pathinfo: false,
             libraryTarget: 'commonjs2',
@@ -44,6 +44,7 @@ module.exports = function (env, args) {
             new webpack.EnvironmentPlugin({
                 NODE_ENV: 'development',
                 VERSION: appVersion,
+                CI: false,
             }),
             new CopyWebpackPlugin({
                 patterns: [
@@ -131,6 +132,11 @@ module.exports = function (env, args) {
                 //     loader: 'svg-inline-loader',
                 // },
             ]
+        },
+        node: {
+            global: false,
+            __filename: false,
+            __dirname: false,
         },
         stats: {
             // Examine all modules
