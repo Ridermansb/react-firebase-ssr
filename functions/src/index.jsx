@@ -45,18 +45,16 @@ app.get('**', serverRenderer)
 // const runtimeOpts = {
 //     memory: '512MB'
 // }
-exports.h2p = {
-    // ssr: functions.runWith(runtimeOpts).https.onRequest(app),
-    ssr: functions.https.onRequest(app),
-    listFiles: functions.https.onRequest((req, res) => {
-        fs.readdir(__dirname, (err, files) => {
-            if (err) {
-                console.error(err);
-                res.sendStatus(500);
-            } else {
-                console.log('Files', files);
-                res.sendStatus(200);
-            }
-        });
-    })
-};
+// ssr: functions.runWith(runtimeOpts).https.onRequest(app),
+exports.ssr = functions.https.onRequest(app);
+exports.listFiles = functions.https.onRequest((req, res) => {
+    fs.readdir(__dirname, (err, files) => {
+        if (err) {
+            console.error(err);
+            res.sendStatus(500);
+        } else {
+            console.log('Files', files);
+            res.sendStatus(200);
+        }
+    });
+})
