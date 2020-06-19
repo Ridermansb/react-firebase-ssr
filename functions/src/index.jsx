@@ -13,7 +13,7 @@ const app = express();
 app.use(compression({ threshold: 0 }))
 app.use(cors({origin: true}));
 
-const publicFolder = path.join(__dirname, './public');
+const publicFolder = path.resolve(__dirname, '../public');
 
 // app.use(express.static('public'))
 // app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
@@ -46,6 +46,17 @@ const runtimeOpts = {
     memory: '512MB'
 }
 exports.h2p = {
-    ssr: functions.runWith(runtimeOpts).https.onRequest(app)
+    ssr: functions.runWith(runtimeOpts).https.onRequest(app),
+    listFiles: (req, res) => {
+        fs.readdir(__dirname, (err, files) => {
+            if (err) {
+                console.error(err);
+                res.sendStatus(500);
+            } else {
+                console.log('Files', files);
+                res.sendStatus(200);
+            }
+        });
+    }
 };
 // exports.ssr = functions.https.onRequest(app);
