@@ -12,12 +12,12 @@ const app = express();
 app.use(compression({ threshold: 0 }))
 app.use(cors({origin: true}));
 
+const publicFolder = path.join(__dirname, '../public')
 // app.use(express.static('public'))
 // app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
 app.use(express.static(publicFolder, { maxAge: '30d' }))
 
 const serverRenderer = (req, res) => {
-    const publicFolder = path.resolve('../public')
     const indexHtmlPath = path.resolve(publicFolder, 'index.html');
 
     const files = fs.readdirSync(publicFolder);
@@ -39,7 +39,7 @@ const serverRenderer = (req, res) => {
         )
     )
 }
-app.get('*', serverRenderer)
+app.get('**', serverRenderer)
 
 const runtimeOpts = {
     memory: '512MB'
