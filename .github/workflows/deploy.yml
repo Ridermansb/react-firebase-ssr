@@ -87,9 +87,8 @@ jobs:
     - name: Cache dist
       id: cache-dist
       uses: actions/cache@v2.0.0
-      working-directory: ./functions
       with:
-        path: dist
+        path: ./functions/dist
         key: ${{ runner.os }}-dist-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ steps.versionGenerator.outputs.version }}
         restore-keys: ${{ runner.os }}-dist-${{ steps.versionGenerator.outputs.version }}
         
@@ -134,11 +133,14 @@ jobs:
     - name: Cache dist
       id: cache-dist
       uses: actions/cache@v2.0.0
-      working-directory: ./functions
       with:
-        path: dist
+        path: ./functions/dist
         key: ${{ runner.os }}-dist-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ steps.versionGenerator.outputs.version }}
         restore-keys: ${{ runner.os }}-dist-${{ steps.versionGenerator.outputs.version }}
+        
+    - run: |
+        ls -la ./
+        ls -la functions/
         
     - name: Install app dependencies
       if: steps.cache-node_modules.outputs.cache-hit != 'true'
