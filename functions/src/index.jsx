@@ -20,7 +20,7 @@ const publicFolder = path.resolve('../public')
 app.use(express.static(publicFolder, { maxAge: '30d' }))
 
 const serverRenderer = (req, res) => {
-    const indexHtmlPath = path.resolve(publicFolder, 'client.html');
+    const indexHtmlPath = path.join(publicFolder, 'client.html');
     const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
 
     // res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
