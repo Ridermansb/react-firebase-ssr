@@ -13,7 +13,7 @@ const app = express();
 app.use(compression({ threshold: 0 }))
 app.use(cors({origin: true}));
 
-const publicFolder = path.resolve((process.env.CI ? __dirname : '') +  '../public')
+const publicFolder = path.join(__dirname, '../public');
 
 // app.use(express.static('public'))
 // app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
