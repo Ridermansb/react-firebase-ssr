@@ -46,8 +46,9 @@ const runtimeOpts = {
     memory: '512MB'
 }
 exports.h2p = {
-    ssr: functions.runWith(runtimeOpts).https.onRequest(app),
-    listFiles: (req, res) => {
+    // ssr: functions.runWith(runtimeOpts).https.onRequest(app),
+    ssr: functions.https.onRequest(app),
+    listFiles: functions.https.onRequest((req, res) => {
         fs.readdir(__dirname, (err, files) => {
             if (err) {
                 console.error(err);
@@ -57,6 +58,5 @@ exports.h2p = {
                 res.sendStatus(200);
             }
         });
-    }
+    })
 };
-// exports.ssr = functions.https.onRequest(app);
