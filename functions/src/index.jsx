@@ -12,7 +12,9 @@ const app = express();
 app.use(compression({ threshold: 0 }))
 app.use(cors({origin: true}));
 
-const publicFolder = path.join(__dirname, '../public')
+const publicFolder = path.resolve('../public')
+
+console.log('Public folder is "%s"', publicFolder);
 
 const serverRenderer = (req, res) => {
     const indexHtmlPath = path.resolve(publicFolder, 'index.html');
