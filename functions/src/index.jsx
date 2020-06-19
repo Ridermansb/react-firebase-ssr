@@ -27,7 +27,6 @@ const serverRenderer = (req, res) => {
     console.log('Public folder is %s', publicFolder);
     console.log('indexHtmlPath %s', indexHtmlPath);
     
-
     const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
     res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
     const html = renderToString(<App />);
