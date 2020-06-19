@@ -45,16 +45,18 @@ npmR start:emulators
 
 ### Great tools for SEO
 
- * [schema-markup-generator][1] or [json-ld-generator][2]
+ * [schema-markup-generator][1] or [json-ld-generator][json-ld-generator]
 
 
 ### Other tools
 
- * [best-marketing-tools][3]
+ * [best-marketing-tools][best-marketing-tools]
+ * [search-console][search-console]
 
 [1]: https://technicalseo.com/tools/schema-markup-generator/
-[2]: https://webcode.tools/json-ld-generator
-[3]: https://saijogeorge.com/best-marketing-tools/
+[json-ld-generator]: https://webcode.tools/json-ld-generator
+[best-marketing-tools]: https://saijogeorge.com/best-marketing-tools/
 [4]: https://prerender.io/
 [5]: https://github.com/stereobooster/react-snap
 [firebase-tools]: https://firebase.google.com/docs/cli
+[search-console]: https://search.google.com/search-console

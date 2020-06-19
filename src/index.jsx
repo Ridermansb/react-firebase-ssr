@@ -38,6 +38,4 @@ document.body.addEventListener('touchstart', function () {
 
 const root = document.getElementById('root');
 
-hydrate(
-        <App/>
-    , root)
+hydrate(<App/>, root);

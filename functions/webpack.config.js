@@ -4,6 +4,7 @@ const {resolve} = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 /**
@@ -43,6 +44,11 @@ module.exports = function (env, args) {
             new webpack.EnvironmentPlugin({
                 NODE_ENV: 'development',
                 VERSION: appVersion,
+            }),
+            new CopyWebpackPlugin({
+                patterns: [
+                    {from: '../public/**', to: '../public/' },
+                ],
             }),
             new webpack.DefinePlugin({
                 __VERSION__: JSON.stringify(appVersion),
