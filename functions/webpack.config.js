@@ -72,7 +72,7 @@ module.exports = function (env, args) {
         resolve: {
             extensions: ['.js', '.jsx'],
         },
-        externals: [nodeExternals(), 'compression', 'express'],
+        externals: [nodeExternals()],
         module: {
             rules: [
                 {

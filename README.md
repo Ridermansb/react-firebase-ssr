@@ -46,6 +46,7 @@ npmR start:emulators
 ### Great tools for SEO
 
  * [schema-markup-generator][1] or [json-ld-generator][json-ld-generator]
+ * [seositecheckup.com][seositecheckup]
 
 
 ### Other tools
@@ -60,3 +61,4 @@ npmR start:emulators
 [5]: https://github.com/stereobooster/react-snap
 [firebase-tools]: https://firebase.google.com/docs/cli
 [search-console]: https://search.google.com/search-console
+[seositecheckup]: https://seositecheckup.com/
