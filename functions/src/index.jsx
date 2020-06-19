@@ -15,6 +15,10 @@ app.use(cors({origin: true}));
 
 const publicFolder = path.resolve('../public')
 
+// app.use(express.static('public'))
+// app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
+app.use(express.static(publicFolder, { maxAge: '30d' }))
+
 const serverRenderer = (req, res) => {
     const indexHtmlPath = path.resolve(publicFolder, 'client.html');
     const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
@@ -22,7 +26,7 @@ const serverRenderer = (req, res) => {
     // res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
     
     const html = renderToString(<App />)
-    console.log('Rendering helmet ...', html);
+    // console.log('Rendering helmet ...', html);
     // const helmet = Helmet.renderStatic();
     // console.log('Helmet', helmet);
     return res.send(
@@ -34,12 +38,10 @@ const serverRenderer = (req, res) => {
 }
 app.get('**', serverRenderer)
 
-// app.use(express.static('public'))
-// app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
-app.use(express.static(publicFolder, { maxAge: '30d' }))
-
 const runtimeOpts = {
     memory: '512MB'
 }
-exports.ssr = functions.runWith(runtimeOpts).https.onRequest(app);
+exports.h2p = {
+    ssr: functions.runWith(runtimeOpts).https.onRequest(app)
+};
 // exports.ssr = functions.https.onRequest(app);
