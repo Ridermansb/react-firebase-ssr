@@ -54,10 +54,6 @@ jobs:
       id: versionGenerator
       run: echo ::set-output name=version::$(git describe --tags --always)
     
-    - run: |
-        rm -rf public
-        rm -rf functions/dist
-        
     - name: Build app
       env:
           FIREBASE_APPID: ${{ secrets.FIREBASE_APPID }}
@@ -91,8 +87,9 @@ jobs:
     - name: Cache dist
       id: cache-dist
       uses: actions/cache@v2.0.0
+      working-directory: ./functions
       with:
-        path: functions/dist
+        path: dist
         key: ${{ runner.os }}-dist-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ steps.versionGenerator.outputs.version }}
         restore-keys: ${{ runner.os }}-dist-${{ steps.versionGenerator.outputs.version }}
         
@@ -137,8 +134,9 @@ jobs:
     - name: Cache dist
       id: cache-dist
       uses: actions/cache@v2.0.0
+      working-directory: ./functions
       with:
-        path: functions/dist
+        path: dist
         key: ${{ runner.os }}-dist-${{ env.GITHUB_RUN_NUMBER }}-${{ env.GITHUB_RUN_ID }}-${{ steps.versionGenerator.outputs.version }}
         restore-keys: ${{ runner.os }}-dist-${{ steps.versionGenerator.outputs.version }}
         
@@ -158,4 +156,4 @@ jobs:
         GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
         PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
       with:
-        args: deploy --non-interactive -m \"v${{ needs.build.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
+        args: deploy -f --non-interactive -m \"v${{ needs.build.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
