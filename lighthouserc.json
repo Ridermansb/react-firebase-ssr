@@ -3,8 +3,11 @@
         "collect": {
             "staticDistDir": "./public",
             "settings": {
-                "plugins": ["lighthouse-plugin-field-performance"]
+                "psiToken": "YOUR_REAL_TOKEN"
             }
+        },
+        "assert": {
+            "preset": "lighthouse:recommended"
         }
     }
 }

@@ -13,12 +13,32 @@ const app = express();
 app.use(compression({ threshold: 0 }))
 app.use(cors({origin: true}));
 
+
+// Sitemap
+const sm = require('sitemap');
+var sitemap = sm.createSitemap({
+    hostname: 'https://react-firebase-ssr.ridermansb.dev',
+    cacheTime: 600000 * 10,
+    urls: [
+        { url: '/', changefreq: 'daily', priority: 0.7 }
+    ]
+});
+// Sitemap route
+app.get('/sitemap.xml', function (req, res) {
+    sitemap.toXML(function (err, xml) {
+        if (err) {
+            return res.status(500).end();
+        }
+        res.header('Content-Type', 'application/xml');
+        res.send(xml);
+    });
+});
+
 const publicFolder = path.resolve(__dirname, './public');
 const indexHtmlPath = path.join(publicFolder, 'client.html');
 const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
 
 const serverRenderer = (req, res) => {
-
     res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
     
     const html = renderToString(<App />)
