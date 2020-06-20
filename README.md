@@ -1,5 +1,10 @@
 > React template with SSR by using Firebase Cloud Functions
 
+
+<p align="center">
+    <img src="demo.png" />
+</p>
+
 ## Get Starter
 
 Make sure you have [`firebase-tools`][firebase-tools] installed
