@@ -6,7 +6,7 @@ const safePostCssParser = require('postcss-safe-parser');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const RobotstxtPlugin = require('robotstxt-webpack-plugin');
-// const OfflinePlugin = require('offline-plugin');
+const OfflinePlugin = require('offline-plugin');
 const { resolve } = require('path');
 
 const srcFolder = resolve(__dirname, 'src');
@@ -124,23 +124,23 @@ module.exports = (currentVersion) => {
                 threshold: 10240,
                 minRatio: 0.8,
             }),
-            // new OfflinePlugin({
-            //     appShell: '/',
-            //     version: currentVersion,
-            //     // autoUpdate: true,
-            //     autoUpdate: 1000 * 60 * 2,
-            //     updateStrategy: 'changed',
-            //     externals: [
-            //         '/',
-            //     ],
-            //     ServiceWorker: {
-            //         events: true,
-            //         navigateFallbackURL: '/',
-            //     },
-            //     AppCache: {
-            //         FALLBACK: {'/': '/'},
-            //     },
-            // }),
+            new OfflinePlugin({
+                appShell: '/',
+                version: currentVersion,
+                // autoUpdate: true,
+                autoUpdate: 1000 * 60 * 2,
+                updateStrategy: 'changed',
+                externals: [
+                    '/',
+                ],
+                ServiceWorker: {
+                    events: true,
+                    navigateFallbackURL: '/',
+                },
+                AppCache: {
+                    FALLBACK: {'/': '/'},
+                },
+            }),
             new RobotstxtPlugin(),
         ],
         performance: {

@@ -29,6 +29,8 @@ module.exports = {
         publicPath: '/',
         disableHostCheck: true,
         compress: true,
+        index: 'client.html',
+        injectHot: (compilerConfig) => compilerConfig.name === 'only-include',
         hot: true,
         http2: true,
         https: true,

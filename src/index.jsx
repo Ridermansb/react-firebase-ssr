@@ -3,7 +3,7 @@
 // go away once https://bugs.webkit.org/show_bug.cgi?id=183937 is fixed.
 // Another way to do https://github.com/emojityper/emojityper/blob/master/src/loader.js#L8
 import React from "react";
-import {hydrate} from "react-dom";
+import {render, hydrate} from "react-dom";
 import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
@@ -39,4 +39,8 @@ document.body.addEventListener('touchstart', function () {
 
 const root = document.getElementById('root');
 
-hydrate(<App/>, root);
+
+// @see https://stackoverflow.com/a/53539693/491181
+// Fix: Expected server HTML to contain a matching <a> in
+const renderMethod = module.hot ? render : hydrate;
+renderMethod(<App/>, root);
