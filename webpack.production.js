@@ -34,20 +34,20 @@ module.exports = (currentVersion) => {
                 chunks: 'all',
                 maxInitialRequests: Infinity,
                 maxAsyncRequests: Infinity,
-                minSize: 100000,
+                minSize: 0,
                 cacheGroups: {
                     default: false,
                     vendors: false,
                     pages: {
                         test: /pages/,
                         chunks: 'all',
-                        priority: -30,
+                        priority: -20,
                         name: false,
                     },
                     vendor: {
-                        test: /node_modules/,
-                        chunks: 'all',
-                        priority: -20,
+                        test: /[\\/]node_modules[\\/]/,
+                        // chunks: 'all',
+                        priority: -10,
                         name(module, chunks, cacheGroupKey) {
                             const moduleFileName = module
                                 .identifier()
@@ -56,14 +56,13 @@ module.exports = (currentVersion) => {
                             const allChunksNames = chunks
                                 .map((item) => item.name)
                                 .join('~');
-                            return `js/vendors/${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
+                            return `js/${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
                         },
                     },
                     common: {
                         name: 'common',
                         minChunks: 2,
-                        chunks: 'async',
-                        priority: -10,
+                        priority: -30,
                         reuseExistingChunk: true,
                         enforce: true,
                     },
