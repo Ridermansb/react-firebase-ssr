@@ -1,0 +1,14 @@
+name: cleanup
+
+on:
+  schedule:
+    - cron:  '0 0 1/10 * *' # At 00:00 on every 10th day-of-month from 1 through 31.”
+
+jobs:
+  delete-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kolpav/purge-artifacts-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          expire-in: 7days # Setting this to 0 will delete all artifacts

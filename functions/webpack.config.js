@@ -5,7 +5,6 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 /**
  * Assume version as git describe
@@ -48,7 +47,7 @@ module.exports = function (env, args) {
             }),
             new CopyWebpackPlugin({
                 patterns: [
-                    {from: '../public/**', to: '../dist/public/' },
+                    {from: '../public/client.html', to: '../dist/public/client.html' },
                 ],
             }),
             new webpack.DefinePlugin({
@@ -56,18 +55,6 @@ module.exports = function (env, args) {
                 __DEVELOPMENT__: JSON.stringify(mode === 'development'),
                 __PRODUCTION__: JSON.stringify(mode === 'production'),
             }),
-            // new MiniCssExtractPlugin({
-            //     publicPath: 'styles/',
-            //     ignoreOrder: true,
-            //     filename:
-            //         mode === 'production'
-            //             ? '[name]-[contenthash].css'
-            //             : '[name].css',
-            //     chunkFilename:
-            //         mode === 'production'
-            //             ? '[id]-[contenthash].css'
-            //             : '[id].css',
-            // }),
             new webpack.HashedModuleIdsPlugin(),
         ],
         resolve: {
@@ -92,45 +79,6 @@ module.exports = function (env, args) {
                     include: [srcFolder, srcClientFolder, /uikit/],
                     use: { loader: "ignore-loader" },
                 }
-                // {
-                //     test: /\.css$/i,
-                //     include: [srcFolder, srcClientFolder, /uikit/],
-                //     use: [
-                //         {
-                //             loader: MiniCssExtractPlugin.loader,
-                //             options: {
-                //                 hmr: false, // mode !== 'production' || process.env.NODE_ENV === 'development',
-                //                 esModule: true,
-                //                 reloadAll: true,
-                //             },
-                //         },
-                //         {
-                //             loader: 'css-loader',
-                //             options: {sourceMap: true, modules: false},
-                //         },
-                //         {
-                //             loader: 'postcss-loader',
-                //             options: {
-                //                 sourceMap: true,
-                //                 ident: 'postcss',
-                //             },
-                //         },
-                //     ],
-                // },
-                // {
-                //     test: /\.(gif|png|jpe?g)$/i,
-                //     use: {
-                //         loader: 'file-loader',
-                //         options: {
-                //             outputPath: 'assets/images/',
-                //             emitFile: false,
-                //         },
-                //     },
-                // },
-                // {
-                //     test: /\.svg$/i,
-                //     loader: 'svg-inline-loader',
-                // },
             ]
         },
         node: {
