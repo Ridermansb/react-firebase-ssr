@@ -42,6 +42,8 @@ npmR start:emulators
    > Allows your Javascript website to be crawled perfectly by search engines.
  * > [react-snap][5]
    > Pre-renders a web app into static HTML. Uses Headless Chrome to crawl all available links starting from the root.
+ * > [pagespeed][pagespeed]
+   > Test your page in all devices
 
 ### Great tools for SEO
 
@@ -62,3 +64,4 @@ npmR start:emulators
 [firebase-tools]: https://firebase.google.com/docs/cli
 [search-console]: https://search.google.com/search-console
 [seositecheckup]: https://seositecheckup.com/
+[pagespeed]: https://developers.google.com/speed/pagespeed/insights/

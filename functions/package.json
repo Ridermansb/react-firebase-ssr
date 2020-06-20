@@ -17,7 +17,8 @@
         "firebase-functions": "^3.6.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
-        "sitemap": "^6.1.5"
+        "sitemap": "^6.1.5",
+        "zlib": "^1.0.5"
     },
     "devDependencies": {
         "@babel/cli": "^7.10.1",
