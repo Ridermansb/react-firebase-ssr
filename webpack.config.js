@@ -1,16 +1,18 @@
 /* eslint-env node */
 
+const fs = require('fs');
 const {join, resolve} = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const fs = require('fs');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
+const ImageminPlugin = require('imagemin-webpack-plugin').default
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const glob = require('glob');
 const webpackDevelopmentConfig = require('./webpack.development.js')
 const webpackProductionConfig = require('./webpack.production.js')
 
@@ -140,6 +142,18 @@ module.exports = function (env, args) {
                 ],
             }),
             new webpack.HashedModuleIdsPlugin(),
+            new ImageminPlugin({
+                disable: mode === 'production',
+                pngquant: {
+                    quality: '95-100'
+                },
+                externalImages: {
+                    context: resolve('public/assets'),
+                    sources: glob.sync('public/assets/**/*.png'),
+                    // destination: 'src/public/images',
+                    // fileName: '[path][name].[ext]' // (filePath) => filePath.replace('jpg', 'webp') is also possible
+                }
+            })
         ],
         resolve: {
             extensions: ['.js', '.jsx'],

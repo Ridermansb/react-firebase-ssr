@@ -149,5 +149,5 @@ jobs:
           https://react-firebase-ssr.ridermansb.dev/
         budgetPath: ./budget.json
         uploadArtifacts: true
-        configPath: ./lighthouserc.json
+#        configPath: ./lighthouserc.json
         temporaryPublicStorage: true
