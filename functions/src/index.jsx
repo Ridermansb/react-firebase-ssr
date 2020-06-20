@@ -14,6 +14,7 @@ app.use(compression({ threshold: 0 }))
 app.use(cors({origin: true}));
 
 const publicFolder = path.resolve(__dirname, './public');
+const prevFolder = path.resolve(__dirname, '..');
 
 // app.use(express.static('public'))
 // app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
@@ -21,8 +22,7 @@ const publicFolder = path.resolve(__dirname, './public');
 
 const serverRenderer = (req, res) => {
 
-    console.warn('Version = ' + process.env.VERSION);
-    console.info('publicFolder = ' + publicFolder);
+    console.info('publicFolder = "%s"', publicFolder);
     
     const indexHtmlPath = path.join(publicFolder, 'client.html');
     const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
@@ -48,7 +48,7 @@ app.get('**', serverRenderer)
 // ssr: functions.runWith(runtimeOpts).https.onRequest(app),
 exports.ssr = functions.https.onRequest(app);
 exports.listFiles = functions.https.onRequest((req, res) => {
-    fs.readdir(publicFolder, (err, files) => {
+    fs.readdir(prevFolder, (err, files) => {
         if (err) {
             console.error(err);
             res.sendStatus(500);
