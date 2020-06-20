@@ -8,6 +8,7 @@ import * as OfflinePluginRuntime from 'offline-plugin/runtime';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import App from './App';
+import './base';
 
 const isSWAvailable = 'serviceWorker' in navigator;
 if (isSWAvailable && __PRODUCTION__) {

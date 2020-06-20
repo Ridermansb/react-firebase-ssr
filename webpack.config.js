@@ -3,6 +3,7 @@
 const {join, resolve} = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const fs = require('fs');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
@@ -73,6 +74,11 @@ module.exports = function (env, args) {
                 template: resolve(__dirname, 'src', 'index.ejs'),
                 minify: {collapseWhitespace: true},
                 inlineSource: 'runtime.+\\.js',
+                inject: true,
+                inline: fs.readFileSync(
+                    'src/assets/first-input-delay.min.js',
+                    'utf8'
+                ),
             }),
             new FaviconsWebpackPlugin({
                 logo: './src/assets/icons/favicon.svg',
