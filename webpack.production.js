@@ -34,7 +34,9 @@ module.exports = (currentVersion) => {
                 chunks: 'all',
                 maxInitialRequests: Infinity,
                 maxAsyncRequests: Infinity,
-                minSize: 0,
+                minSize: 20000,
+                minChunks: 1,
+                maxSize: 249856,
                 cacheGroups: {
                     default: false,
                     vendors: false,

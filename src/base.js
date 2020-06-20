@@ -44,6 +44,9 @@ analytics.setAnalyticsCollectionEnabled(__PRODUCTION__);
 
 const performance = app.performance();
 
+performance.dataCollectionEnabled = __PRODUCTION__;
+performance.instrumentationEnabled = __PRODUCTION__;
+
 export { firebase, analytics, performance };
 
 export default app;
