@@ -84,8 +84,9 @@ module.exports = function (env, args) {
                 ),
             }),
             new ScriptExtHtmlWebpackPlugin({
-                // sync: 'first.js',
-                defaultAttribute: 'defer'
+                defaultAttribute: 'defer',
+                // preload: /\.js$/,
+                inline: 'runtime'
             }),
             new FaviconsWebpackPlugin({
                 logo: './src/assets/icons/favicon.svg',
