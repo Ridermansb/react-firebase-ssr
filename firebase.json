@@ -51,17 +51,18 @@
                     }
                 ]
             }
-        ],
-        "emulators": {
-            "functions": {
-                "port": 8001
-            },
-            "hosting": {
-                "port": 8000
-            },
-            "ui": {
-                "enabled": true,
-                "port": 4000
-            }
+        ]
+    },
+    "emulators": {
+        "functions": {
+            "port": 8001
+        },
+        "hosting": {
+            "port": 8000
+        },
+        "ui": {
+            "enabled": true,
+            "port": 4000
         }
     }
+}
