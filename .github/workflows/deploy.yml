@@ -137,3 +137,16 @@ jobs:
         PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
       with:
         args: deploy -f --non-interactive -m \"v${{ needs.build.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
+
+  audit:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+    - name: Audit URLs using Lighthouse
+      uses: treosh/lighthouse-ci-action@v3
+      with:
+        urls: |
+          https://react-firebase-ssr.ridermansb.dev/
+        budgetPath: ./budget.json
+        uploadArtifacts: true
+        temporaryPublicStorage: true
