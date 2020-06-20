@@ -72,7 +72,7 @@ module.exports = (currentVersion) => {
             minimize: true,
             minimizer: [
                 new TerserJSPlugin({
-                    exclude: /\/docs|\/coverage|\/dist|\/vendors/,
+                    exclude: /\/docs|\/coverage\//,
                     parallel: true,
                     cache: true,
                     sourceMap: true,
