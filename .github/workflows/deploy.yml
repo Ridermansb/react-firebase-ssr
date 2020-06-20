@@ -113,10 +113,11 @@ jobs:
 
     - uses: actions/download-artifact@v2
       with:
-        name: ${{ runner.os }}-public-${{ steps.versionGenerator.outputs.version }}
+        name: ${{ runner.os }}-public-${{ needs.build.outputs.version }}
+        path: public
     - uses: actions/download-artifact@v2
       with:
-        name: ${{ runner.os }}-dist-${{ steps.versionGenerator.outputs.version }}
+        name: ${{ runner.os }}-dist-${{ needs.build.outputs.version }}
     - run: |
         ls -la
         ls -la public
