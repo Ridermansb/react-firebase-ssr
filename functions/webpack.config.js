@@ -47,7 +47,7 @@ module.exports = function (env, args) {
             }),
             new CopyWebpackPlugin({
                 patterns: [
-                    {from: '../public/client.html', to: '../dist/public/client.html' },
+                    {from: '../public/', to: '../dist/public/' },
                 ],
             }),
             new webpack.DefinePlugin({

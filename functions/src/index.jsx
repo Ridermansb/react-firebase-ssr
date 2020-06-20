@@ -14,14 +14,10 @@ app.use(compression({ threshold: 0 }))
 app.use(cors({origin: true}));
 
 const publicFolder = path.resolve(__dirname, './public');
-const prevFolder = path.resolve(__dirname, '../..');
+const indexHtmlPath = path.join(publicFolder, 'client.html');
+const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
 
 const serverRenderer = (req, res) => {
-
-    console.info('publicFolder = "%s"', publicFolder);
-    
-    const indexHtmlPath = path.join(publicFolder, 'client.html');
-    const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
 
     // res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
     
@@ -38,20 +34,8 @@ const serverRenderer = (req, res) => {
 }
 app.get('**', serverRenderer)
 
-// const runtimeOpts = {
-//     memory: '512MB'
-// }
-// ssr: functions.runWith(runtimeOpts).https.onRequest(app),
-exports.ssr = functions.https.onRequest(app);
-exports.listFiles = functions.https.onRequest((req, res) => {
-    console.log('Listing from "%s"', prevFolder)
-    fs.readdir(prevFolder, (err, files) => {
-        if (err) {
-            console.error(err);
-            res.sendStatus(500);
-        } else {
-            console.log('Files', files);
-            res.sendStatus(200);
-        }
-    });
-})
+const runtimeOpts = {
+    memory: '512MB'
+}
+exports.ssr = functions.runWith(runtimeOpts).https.onRequest(app);
+// exports.ssr = functions.https.onRequest(app);
