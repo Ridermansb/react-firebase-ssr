@@ -66,20 +66,18 @@ jobs:
           FIREBASE_APIKEY: ${{ secrets.FIREBASE_APIKEY }}
           PUBLIC_PATH: ${{ secrets.PUBLIC_PATH }}
           VERSION: ${{ steps.versionGenerator.outputs.version }}
-      run: NODE_ENV=production npm run build      
-    
+      run: NODE_ENV=production npm run build
+
+    - name: Optimizing images
+      run: mogrify -filter Triangle -define filter:support=2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB *.*
+      working-directory: public/assets
+      
     - name: Build functions
       env:
           VERSION: ${{ steps.versionGenerator.outputs.version }}
       run: NODE_ENV=production npm run build
       working-directory: functions
-      
-    - name: Image Actions
-      uses: calibreapp/image-actions@1.1.0
-      with:
-        githubToken: ${{ secrets.GITHUB_TOKEN }}
-        ignorePaths: "node_modules/**,src"
-      
+
     - uses: actions/upload-artifact@v2
       with:
         name: ${{ runner.os }}-public-${{ steps.versionGenerator.outputs.version }}

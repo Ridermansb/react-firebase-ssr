@@ -144,8 +144,9 @@ module.exports = function (env, args) {
             new webpack.HashedModuleIdsPlugin(),
             new ImageminPlugin({
                 disable: mode === 'production',
+                test: /.+\/public\\assets\/.*/gi,
                 pngquant: {
-                    quality: '95-100'
+                    quality: '80-100'
                 },
                 externalImages: {
                     context: resolve('public/assets'),
