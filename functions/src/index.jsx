@@ -17,7 +17,7 @@ const publicFolder = path.resolve(__dirname, './public');
 
 // app.use(express.static('public'))
 // app.get('*.*', express.static(publicFolder, { maxAge: '30d' }));
-app.use(express.static(publicFolder, { maxAge: '30d' }))
+// app.use(express.static(publicFolder, { maxAge: '30d' }))
 
 const serverRenderer = (req, res) => {
 

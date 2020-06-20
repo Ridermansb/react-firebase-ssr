@@ -10,7 +10,7 @@
         "trailingSlash": false,
         "rewrites": [
             {
-                "source": "**",
+                "source": "/",
                 "function": "ssr"
             }
         ]
