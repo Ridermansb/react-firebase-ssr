@@ -13,18 +13,55 @@
                 "source": "/",
                 "function": "ssr"
             }
-        ]
-    },
-    "emulators": {
-        "functions": {
-            "port": 8001
-        },
-        "hosting": {
-            "port": 8000
-        },
-        "ui": {
-            "enabled": true,
-            "port": 4000
+        ],
+        "headers": [
+            {
+                "source": "**/*.@(js|css)",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=604800"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+                "headers": [
+                    {
+                        "key": "Access-Control-Allow-Origin",
+                        "value": "*"
+                    }
+                ]
+            },
+            {
+                "source": "**/*.@(jpg|jpeg|gif|png)",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=604800"
+                    }
+                ]
+            },
+            {
+                "source": "404.html",
+                "headers": [
+                    {
+                        "key": "Cache-Control",
+                        "value": "max-age=300"
+                    }
+                ]
+            }
+        ],
+        "emulators": {
+            "functions": {
+                "port": 8001
+            },
+            "hosting": {
+                "port": 8000
+            },
+            "ui": {
+                "enabled": true,
+                "port": 4000
+            }
         }
     }
-}

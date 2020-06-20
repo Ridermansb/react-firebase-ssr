@@ -19,7 +19,7 @@ const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
 
 const serverRenderer = (req, res) => {
 
-    // res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
+    res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
     
     const html = renderToString(<App />)
     // console.log('Rendering helmet ...', html);
