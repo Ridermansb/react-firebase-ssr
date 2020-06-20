@@ -7,6 +7,7 @@ const fs = require('fs');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
@@ -79,6 +80,10 @@ module.exports = function (env, args) {
                     'src/assets/first-input-delay.min.js',
                     'utf8'
                 ),
+            }),
+            new ScriptExtHtmlWebpackPlugin({
+                // sync: 'first.js',
+                defaultAttribute: 'defer'
             }),
             new FaviconsWebpackPlugin({
                 logo: './src/assets/icons/favicon.svg',
