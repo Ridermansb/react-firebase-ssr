@@ -150,7 +150,7 @@ jobs:
       uses: treosh/lighthouse-ci-action@v3
       with:
         urls: https://react-firebase-ssr.ridermansb.dev/
-        budgetPath: './budget.json'
+        budgetPath: ${{ github.workspace }}/budget.json
         uploadArtifacts: true
-#        configPath: './lighthouserc.json'
+        configPath: ${{ github.workspace }}/lighthouserc.json
         temporaryPublicStorage: true
