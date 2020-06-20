@@ -74,6 +74,12 @@ jobs:
       run: NODE_ENV=production npm run build
       working-directory: functions
       
+    - name: Image Actions
+      uses: calibreapp/image-actions@1.1.0
+      with:
+        githubToken: ${{ secrets.GITHUB_TOKEN }}
+        ignorePaths: "node_modules/**,src"
+      
     - uses: actions/upload-artifact@v2
       with:
         name: ${{ runner.os }}-public-${{ steps.versionGenerator.outputs.version }}
