@@ -46,7 +46,7 @@ module.exports = (currentVersion) => {
                     },
                     vendor: {
                         test: /[\\/]node_modules[\\/]/,
-                        // chunks: 'all',
+                        chunks: 'all',
                         priority: -10,
                         name(module, chunks, cacheGroupKey) {
                             const moduleFileName = module

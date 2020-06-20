@@ -15,6 +15,7 @@ const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const glob = require('glob');
 const webpackDevelopmentConfig = require('./webpack.development.js')
 const webpackProductionConfig = require('./webpack.production.js')
+const pkg = require('./package.json');
 
 require('dotenv').config();
 
@@ -72,7 +73,18 @@ module.exports = function (env, args) {
             }),
             new HtmlWebpackPlugin({
                 filename: 'client.html',
-                title: 'react-firebase-ssr',
+                title: pkg.name,
+                meta: {
+                    "description": pkg.description,
+                    "msapplication-TileColor": "#1e87f0",
+                    "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover",
+                    "mobile-web-app-capable": "yes",
+                    "apple-mobile-web-app-capable": "yes",
+                    "apple-mobile-web-app-status-bar-style": "black-translucent",
+                    "theme-color": "#ffffff",
+                    "msapplication-navbutton-color": "#1e87f0",
+                    "msapplication-starturl": "/?utm_source=a2hs",
+                },
                 favicon: resolve(srcFolder, 'assets/icons/favicon.ico'),
                 template: resolve(__dirname, 'src', 'index.ejs'),
                 minify: {collapseWhitespace: true},
@@ -93,8 +105,8 @@ module.exports = function (env, args) {
                 cache: true,
                 inject: true,
                 favicons: {
-                    appName: 'react-firebase-ssr',
-                    appDescription: 'React template with SSR by using Firebase',
+                    appName: pkg.name,
+                    appDescription: pkg.description,
                     developerName: 'ridermansb',
                     background: '#fff',
                     theme_color: '#333',
@@ -105,11 +117,11 @@ module.exports = function (env, args) {
                 }
             }),
             new WebpackPwaManifest({
-                name: 'react-firebase-ssr',
+                name: pkg.name,
                 fingerprints: true,
                 inject: true,
-                short_name: 'react-firebase-ssr',
-                description: 'React template with SSR by using Firebase',
+                short_name: pkg.name,
+                description: pkg.description,
                 background_color: '#fff',
                 start_url: '/?utm_source=a2hs&utm_medium=pwa',
                 crossorigin: 'use-credentials',

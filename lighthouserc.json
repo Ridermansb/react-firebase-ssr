@@ -1,6 +1,7 @@
 {
     "ci": {
         "collect": {
+            "staticDistDir": "./public",
             "settings": {
                 "plugins": ["lighthouse-plugin-field-performance"]
             }
