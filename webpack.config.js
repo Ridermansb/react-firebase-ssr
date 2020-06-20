@@ -60,7 +60,7 @@ module.exports = function (env, args) {
                 FIREBASE_STORAGEBUCKET: '',
                 FIREBASE_MESSAGINGSENDERID: '',
                 FIREBASE_MEASUREMENTID: '',
-                FIREBASE_API_KEY: '',
+                FIREBASE_APIKEY: '',
             }),
             new webpack.DefinePlugin({
                 __VERSION__: JSON.stringify(appVersion),

@@ -8,7 +8,7 @@ import 'firebase/performance';
 
 const FIREBASE_CONFIG = {
     appId: process.env.FIREBASE_APPID,
-    apiKey: process.env.FIREBASE_API_KEY,
+    apiKey: process.env.FIREBASE_APIKEY,
     authDomain: process.env.FIREBASE_AUTHDOMAIN,
     databaseURL: process.env.FIREBASE_DATABASEURL,
     projectId: process.env.FIREBASE_PROJECTID,

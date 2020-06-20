@@ -63,7 +63,7 @@ jobs:
           FIREBASE_STORAGEBUCKET: ${{ secrets.FIREBASE_STORAGEBUCKET }}
           FIREBASE_MESSAGINGSENDERID: ${{ secrets.FIREBASE_MESSAGINGSENDERID }}
           FIREBASE_MEASUREMENTID: ${{ secrets.FIREBASE_MEASUREMENTID }}
-          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          FIREBASE_APIKEY: ${{ secrets.FIREBASE_APIKEY }}
           PUBLIC_PATH: ${{ secrets.PUBLIC_PATH }}
           VERSION: ${{ steps.versionGenerator.outputs.version }}
       run: NODE_ENV=production npm run build      
