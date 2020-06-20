@@ -15,7 +15,7 @@
             },
             {
                 "source": "/sitemap.xml",
-                "function": "ssr"
+                "function": "sitemap"
             }
         ],
         "headers": [
