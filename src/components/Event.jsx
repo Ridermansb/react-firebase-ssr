@@ -94,7 +94,7 @@ const Event = () => {
             </Helmet>
 
             <div className="uk-container">
-                <h3 className="uk-heading-bullet uk-text-muted uk-margin-top">react-firebase-ssr</h3>
+                <h1 className="uk-heading-bullet uk-text-muted uk-margin-top">react-firebase-ssr</h1>
                 <Time/>
 
                 <div className="uk-card uk-card-default">
@@ -102,7 +102,7 @@ const Event = () => {
                         <img data-src={seo.structuredData.image} alt={seo.structuredData.name} width="345px" ref={imageEventRef} />
                     </div>
                     <div className="uk-card-body">
-                        <h3 className="uk-card-title">{seo.structuredData.name}</h3>
+                        <h2 className="uk-card-title">{seo.structuredData.name}</h2>
                         <p>{seo.structuredData.description}</p>
                     </div>
                 </div>
