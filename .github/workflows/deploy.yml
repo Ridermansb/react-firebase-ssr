@@ -44,11 +44,11 @@ jobs:
     
     - name: Install app dependencies
       if: steps.cache-node_modules.outputs.cache-hit != 'true'
-      run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
+      run: npm ci --prefer-offline --no-audit --progress=false
 
     - name: Install functions dependencies
       if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
-      run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
+      run: npm ci --prefer-offline --no-audit --progress=false
       working-directory: ./functions
         
   build-ssr:
@@ -58,6 +58,9 @@ jobs:
       version: ${{ steps.versionGenerator.outputs.version }}
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2-beta
+      with:
+        node-version: '10'
     - name: Generate version
       id: versionGenerator
       run: echo ::set-output name=version::SSR-v${{ needs.install.outputs.version }}
@@ -75,8 +78,7 @@ jobs:
         restore-keys: ${{ runner.os }}-node-
 
     - name: Install app dependencies
-#      if: steps.cache-node_modules.outputs.cache-hit != 'true'
-      run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
+      run: npm ci --prefer-offline --no-audit --progress=false
       
     - name: Build
       env:
@@ -108,6 +110,9 @@ jobs:
       version: ${{ steps.versionGenerator.outputs.version }}
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2-beta
+      with:
+        node-version: '10'
     - name: Generate version
       id: versionGenerator
       run: echo ::set-output name=version::CSR-v${{ needs.install.outputs.version }}
@@ -125,8 +130,7 @@ jobs:
         restore-keys: ${{ runner.os }}-node-
 
     - name: Install app dependencies
-#      if: steps.cache-node_modules.outputs.cache-hit != 'true'
-      run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
+      run: npm ci --prefer-offline --no-audit --progress=false
         
     - name: Build
       env:
@@ -156,6 +160,9 @@ jobs:
     needs: [install, build-ssr]
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '10'
       - name: Cache node_modules
         id: cache-node_modules
         uses: actions/cache@v2.0.0
@@ -177,10 +184,10 @@ jobs:
 
       - name: Install app dependencies
         #      if: steps.cache-node_modules.outputs.cache-hit != 'true'
-        run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
+        run: npm ci --prefer-offline --no-audit --progress=false
       - name: Install functions dependencies
-#        if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
-        run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
+        if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
+        run: npm ci --prefer-offline --no-audit --progress=false
         working-directory: ./functions
         
       - uses: actions/download-artifact@v2
@@ -203,7 +210,9 @@ jobs:
     needs: [build-ssr, install]
     steps:
     - uses: actions/checkout@v2
-
+    - uses: actions/setup-node@v2-beta
+      with:
+        node-version: '10'
     - name: Cache node_modules
       id: cache-node_modules
       uses: actions/cache@v2.0.0
@@ -251,7 +260,9 @@ jobs:
     needs: [build-csr, install]
     steps:
     - uses: actions/checkout@v2
-
+    - uses: actions/setup-node@v2-beta
+      with:
+        node-version: '10'
     - name: Cache node_modules
       id: cache-node_modules
       uses: actions/cache@v2.0.0
@@ -298,7 +309,9 @@ jobs:
     needs: [build-functions, install]
     steps:
     - uses: actions/checkout@v2
-
+    - uses: actions/setup-node@v2-beta
+      with:
+        node-version: '10'
     - name: Cache node_modules
       id: cache-node_modules
       uses: actions/cache@v2.0.0
