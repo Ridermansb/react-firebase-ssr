@@ -20,17 +20,24 @@ const serverRenderer = (req, res) => {
     res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
     
     const componentStream = renderToNodeStream(<App />)
-    res.write(htmlIndex);
-    componentStream.pipe(res, { end: false });
 
+    const rootIndex = htmlIndex.indexOf('<!-- SSR-root --></div>');
+    const withoutComponentHTML = htmlIndex.substr(0, rootIndex);
+
+    console.log('Render helmet...');
     const helmet = Helmet.renderStatic();
-    const htmlEnd = htmlIndex
+    const htmlStart = withoutComponentHTML
         .replace('<html>',`<html ${helmet.htmlAttributes.toString()}>`)
-        .replace('<title><!-- SSR --></title>', helmet.title.toString())
+        .replace('<title><!-- SSR-title --></title>', helmet.title.toString())
         .replace('<!-- SSR-meta -->', helmet.meta.toString())
         .replace('<!-- SSR-link -->', helmet.link.toString())
         .replace('<!-- SSR-script -->', helmet.script.toString())
-        .replace('<div id="root"><!-- SSR --></div>', `<div id="root">${html}</div>`);
+    res.write(htmlStart);
+    
+    console.log('pipe component...');
+    componentStream.pipe(res, { end: false });
+
+    const htmlEnd = htmlIndex.substring(rootIndex, htmlIndex.length);
 
     return componentStream.on("end", () => {
         res.write(htmlEnd);

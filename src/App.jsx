@@ -47,4 +47,4 @@ const App = () => {
     );
 };
 
-export default __DEVELOPMENT__ ? hot(App) : App;
+export default (__DEVELOPMENT__ && module.hot) ? hot(App) : App;

@@ -73,7 +73,7 @@ module.exports = function (env, args) {
             }),
             new HtmlWebpackPlugin({
                 filename: env.ssr ? 'client.html' : 'index.html',
-                title: env.ssr ? '<!-- SSR -->' : 'React template with SSR by using Firebase',
+                title: env.ssr ? '<!-- SSR-title -->' : 'React template with SSR by using Firebase',
                 meta: {
                     "description": pkg.description,
                     "msapplication-TileColor": "#1e87f0",
