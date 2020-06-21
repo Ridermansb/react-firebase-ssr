@@ -45,7 +45,6 @@ const Event = () => {
                 <meta property="og:url" content={seo.structuredData.url} />
                 <meta property="og:description" content={seo.structuredData.description} />
                 <meta property="og:type" content="website" />
-                <meta property="og:image" content={seo.structuredData.image} />
                 <meta property="og:locale" content="pt_BR" />
                 
                 <meta property="fb:app_id" content={process.env.FACEBOOK_APP_ID} />
