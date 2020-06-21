@@ -38,6 +38,7 @@ const Event = () => {
                 <meta property="og:description" content={seo.structuredData.description} />
                 <meta property="og:type" content="website" />
                 <meta property="og:image" content={seo.structuredData.image} />
+                <meta property="og:locale" content="pt_BR" />
                 
                 <meta name="twitter:card" content={seo.structuredData.description} />
                 <meta name="twitter:site" content={seo.structuredData.url} />
