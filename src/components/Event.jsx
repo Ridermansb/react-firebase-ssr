@@ -12,7 +12,7 @@ const Event = () => {
             "name": "React + SSR + Firebase = ♥️",
             "url": "http://react-firebase-ssr.ridermansb.dev/",
             "description": "Exemplo usando React SSR rodando na estrutura do firebase cloud functions",
-            "image": `http://react-firebase-ssr.ridermansb.dev${banner}`,
+            "image": `https://react-firebase-ssr.ridermansb.dev${banner}`,
             "startDate": "2020-06-23T18:00",
             "endDate": "2020-06-23T19:00",
             "eventStatus": "https://schema.org/EventScheduled",
