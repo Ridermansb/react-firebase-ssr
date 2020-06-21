@@ -11,7 +11,7 @@ const Event = () => {
             "@type": "Event",
             "name": "React + SSR + Firebase = ♥️",
             "url": "http://react-firebase-ssr.ridermansb.dev/",
-            "description": "React template with SSR by using Firebase",
+            "description": "Exemplo usando React SSR rodando na estrutura do firebase cloud functions",
             "image": banner,
             "startDate": "2020-06-23T18:00",
             "endDate": "2020-06-23T19:00",
@@ -33,6 +33,8 @@ const Event = () => {
             <Helmet encodeSpecialCharacters={false}>
                 <title itemProp="name">{seo.structuredData.name}</title>
                 <script type="application/ld+json">{JSON.stringify(seo.structuredData)}</script>
+                <meta name="author" content="ridermansb"/>
+                <meta name="image" property="og:image" content={seo.structuredData.image}/>
                 <meta property="og:title" content={seo.structuredData.name} />
                 <meta property="og:site_name" content={seo.structuredData.name} />
                 <meta property="og:url" content={seo.structuredData.url} />
