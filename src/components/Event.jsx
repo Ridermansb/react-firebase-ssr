@@ -50,6 +50,8 @@ const Event = () => {
                 <meta name="twitter:title" content={seo.structuredData.name} />
                 <meta name="twitter:description" content={seo.structuredData.description} />
                 <meta name="twitter:image" content={seo.structuredData.image} />
+                <meta name="twitter:image:src" content={seo.structuredData.image} />
+                <meta property="twitter:domain" content="react-firebase-ssr.ridermansb.dev" />
                 <meta name="twitter:image:alt" content={seo.structuredData.name} />
                 <meta name="twitter:creator" content={seo.structuredData.performer.name} />
             </Helmet>

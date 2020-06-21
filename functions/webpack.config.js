@@ -33,7 +33,7 @@ module.exports = function (env, args) {
             path: resolve('dist'),
             filename: '[name].js',
             chunkFilename: '[name].js',
-            publicPath: '/public',
+            publicPath: '/',
             sourceMapFilename: '[name].js.map',
             pathinfo: false,
             libraryTarget: 'commonjs2',
