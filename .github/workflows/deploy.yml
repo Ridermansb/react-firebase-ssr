@@ -303,7 +303,7 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: ${{ runner.os }}-build-functions-${{ needs.install.outputs.version }}
-        path: public
+        path: functions/dist
         
     - name: Deploy to Firebase
       run: npm run deploy -- --only functions -f --non-interactive -m "Functions build v${{ needs.install.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action"
