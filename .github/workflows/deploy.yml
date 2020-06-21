@@ -33,14 +33,14 @@ jobs:
           **/node_modules
           ${{ steps.npm-cache.outputs.dir }}
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        # restore-keys: ${{ runner.os }}-node-      
+        restore-keys: ${{ runner.os }}-node-      
     - name: Cache functions node_modules
       id: cache-functions-node_modules
       uses: actions/cache@v2.0.0
       with:
         path: functions/node_modules
         key: ${{ runner.os }}-node-functions-${{ hashFiles('functions/package-lock.json') }}
-        # restore-keys: ${{ runner.os }}-node-functions-
+        restore-keys: ${{ runner.os }}-node-functions-
     
     - name: Install app dependencies
       if: steps.cache-node_modules.outputs.cache-hit != 'true'
@@ -72,10 +72,10 @@ jobs:
           **/node_modules
           ${{ steps.npm-cache.outputs.dir }}
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        # restore-keys: ${{ runner.os }}-node-
+        restore-keys: ${{ runner.os }}-node-
 
     - name: Install app dependencies
-      if: steps.cache-node_modules.outputs.cache-hit != 'true'
+#      if: steps.cache-node_modules.outputs.cache-hit != 'true'
       run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
       
     - name: Build
@@ -122,10 +122,10 @@ jobs:
           **/node_modules
           ${{ steps.npm-cache.outputs.dir }}
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        # restore-keys: ${{ runner.os }}-node-
+        restore-keys: ${{ runner.os }}-node-
 
     - name: Install app dependencies
-      if: steps.cache-node_modules.outputs.cache-hit != 'true'
+#      if: steps.cache-node_modules.outputs.cache-hit != 'true'
       run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
         
     - name: Build
@@ -166,17 +166,20 @@ jobs:
             **/node_modules
             ${{ steps.npm-cache.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          # restore-keys: ${{ runner.os }}-node-
+          restore-keys: ${{ runner.os }}-node-
       - name: Cache functions node_modules
         id: cache-functions-node_modules
         uses: actions/cache@v2.0.0
         with:
           path: functions/node_modules
           key: ${{ runner.os }}-node-functions-${{ hashFiles('functions/package-lock.json') }}
-          # restore-keys: ${{ runner.os }}-node-functions-
+          restore-keys: ${{ runner.os }}-node-functions-
 
+      - name: Install app dependencies
+        #      if: steps.cache-node_modules.outputs.cache-hit != 'true'
+        run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
       - name: Install functions dependencies
-        if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
+#        if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
         working-directory: ./functions
         
@@ -211,14 +214,14 @@ jobs:
           **/node_modules
           ${{ steps.npm-cache.outputs.dir }}
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        # restore-keys: ${{ runner.os }}-node-      
+        restore-keys: ${{ runner.os }}-node-      
     - name: Cache functions node_modules
       id: cache-functions-node_modules
       uses: actions/cache@v2.0.0
       with:
         path: functions/node_modules
         key: ${{ runner.os }}-node-functions-${{ hashFiles('functions/package-lock.json') }}
-        # restore-keys: ${{ runner.os }}-node-functions-
+        restore-keys: ${{ runner.os }}-node-functions-
 
     - uses: actions/download-artifact@v2
       with:
@@ -259,27 +262,27 @@ jobs:
           **/node_modules
           ${{ steps.npm-cache.outputs.dir }}
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        # restore-keys: ${{ runner.os }}-node-      
+        restore-keys: ${{ runner.os }}-node-      
     - name: Cache functions node_modules
       id: cache-functions-node_modules
       uses: actions/cache@v2.0.0
       with:
         path: functions/node_modules
         key: ${{ runner.os }}-node-functions-${{ hashFiles('functions/package-lock.json') }}
-#        restore-keys: ${{ runner.os }}-node-functions-
+        restore-keys: ${{ runner.os }}-node-functions-
 
     - uses: actions/download-artifact@v2
       with:
         name: ${{ runner.os }}-build-csr-${{ needs.build-csr.outputs.version }}
         path: public
         
-    - name: Install app dependencies
-      if: steps.cache-node_modules.outputs.cache-hit != 'true'
-      run: npm ci --prefer-offline --no-audit --progress=false
-    - name: Install functions dependencies
-      if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
-      run: npm ci --prefer-offline --no-audit --progress=false
-      working-directory: ./functions
+#    - name: Install app dependencies
+#      if: steps.cache-node_modules.outputs.cache-hit != 'true'
+#      run: npm ci --prefer-offline --no-audit --progress=false
+#    - name: Install functions dependencies
+#      if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
+#      run: npm ci --prefer-offline --no-audit --progress=false
+#      working-directory: ./functions
         
     - name: Deploy to Firebase
       uses: w9jds/firebase-action@v1.3.1
@@ -306,14 +309,14 @@ jobs:
           **/node_modules
           ${{ steps.npm-cache.outputs.dir }}
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        # restore-keys: ${{ runner.os }}-node-      
+        restore-keys: ${{ runner.os }}-node-      
     - name: Cache functions node_modules
       id: cache-functions-node_modules
       uses: actions/cache@v2.0.0
       with:
         path: functions/node_modules
         key: ${{ runner.os }}-node-functions-${{ hashFiles('functions/package-lock.json') }}
-        # restore-keys: ${{ runner.os }}-node-functions-
+        restore-keys: ${{ runner.os }}-node-functions-
 
     - uses: actions/download-artifact@v2
       with:
