@@ -77,8 +77,8 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: ${{ runner.os }}-node-
 
-    - name: Install app dependencies
-      run: npm ci --prefer-offline --no-audit --progress=false
+#    - name: Install app dependencies
+#      run: npm ci --prefer-offline --no-audit --progress=false
       
     - name: Build
       env:
@@ -129,8 +129,8 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: ${{ runner.os }}-node-
 
-    - name: Install app dependencies
-      run: npm ci --prefer-offline --no-audit --progress=false
+#    - name: Install app dependencies
+#      run: npm ci --prefer-offline --no-audit --progress=false
         
     - name: Build
       env:
@@ -182,13 +182,13 @@ jobs:
           key: ${{ runner.os }}-node-functions-${{ hashFiles('functions/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-functions-
 
-      - name: Install app dependencies
-        #      if: steps.cache-node_modules.outputs.cache-hit != 'true'
-        run: npm ci --prefer-offline --no-audit --progress=false
-      - name: Install functions dependencies
-        if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
-        run: npm ci --prefer-offline --no-audit --progress=false
-        working-directory: ./functions
+#      - name: Install app dependencies
+##              if: steps.cache-node_modules.outputs.cache-hit != 'true'
+#        run: npm ci --prefer-offline --no-audit --progress=false
+#      - name: Install functions dependencies
+##        if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
+#        run: npm ci --prefer-offline --no-audit --progress=false
+#        working-directory: ./functions
         
       - uses: actions/download-artifact@v2
         with:
@@ -253,7 +253,7 @@ jobs:
         GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
         PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
       with:
-        args: deploy --only hosting:template-react-firebase-ssr -f --non-interactive -m \"SSR build v${{ needs.build-ssr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
+        args: deploy --only hosting:ssr -f --non-interactive -m \"SSR build v${{ needs.build-ssr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
 
   deploy-csr:
     runs-on: ubuntu-latest
@@ -302,7 +302,7 @@ jobs:
         GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
         PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
       with:
-        args: deploy --only hosting:template-react-firebase-no-ssr -f --non-interactive -m \"CSR build v${{ needs.build-csr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
+        args: deploy --only hosting:no-ssr -f --non-interactive -m \"CSR build v${{ needs.build-csr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
 
   deploy-functions:
     runs-on: ubuntu-latest

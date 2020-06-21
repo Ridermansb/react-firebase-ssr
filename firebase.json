@@ -60,7 +60,6 @@
                 }
             ]
         },
-
         {
             "public": "public/",
             "target": "no-ssr",
@@ -74,12 +73,12 @@
             "trailingSlash": false,
             "rewrites": [
                 {
-                    "source": "**",
-                    "function": "ssr"
-                },
-                {
                     "source": "/sitemap.xml",
                     "function": "sitemap"
+                },
+                {
+                    "source": "**",
+                    "destination": "/index.html"
                 }
             ],
             "headers": [
@@ -120,7 +119,7 @@
                     ]
                 }
             ]
-        }        
+        }
     ],
     "emulators": {
         "functions": {
