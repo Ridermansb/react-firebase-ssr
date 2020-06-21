@@ -12,7 +12,7 @@ const Event = () => {
             "name": "React + SSR + Firebase = ♥️",
             "url": "http://react-firebase-ssr.ridermansb.dev/",
             "description": "Exemplo usando React SSR rodando na estrutura do firebase cloud functions",
-            "image": banner,
+            "image": `http://react-firebase-ssr.ridermansb.dev${banner}`,
             "startDate": "2020-06-23T18:00",
             "endDate": "2020-06-23T19:00",
             "eventStatus": "https://schema.org/EventScheduled",
@@ -23,7 +23,7 @@ const Event = () => {
             },
             "performer": {
                 "@type": "Person",
-                "name": "@ridermansb"
+                "name": "ridermansb"
             }
         }
     }
@@ -33,7 +33,7 @@ const Event = () => {
             <Helmet encodeSpecialCharacters={false}>
                 <title itemProp="name">{seo.structuredData.name}</title>
                 <script type="application/ld+json">{JSON.stringify(seo.structuredData)}</script>
-                <meta name="author" content="ridermansb"/>
+                <meta name="author" content={seo.structuredData.performer.name}/>
                 <meta name="image" property="og:image" content={seo.structuredData.image}/>
                 <meta property="og:title" content={seo.structuredData.name} />
                 <meta property="og:site_name" content={seo.structuredData.name} />
@@ -44,9 +44,14 @@ const Event = () => {
                 <meta property="og:locale" content="pt_BR" />
                 
                 <meta property="fb:app_id" content={process.env.FACEBOOK_APP_ID} />
+
+                <meta name="twitter:site" content={`@${seo.structuredData.name}`} />
+                <meta name="twitter:title" content={seo.structuredData.name} />
+                <meta name="twitter:description" content={seo.structuredData.description} />
+                <meta name="twitter:image" content={seo.structuredData.image} />
                 <meta name="twitter:card" content={seo.structuredData.description} />
-                <meta name="twitter:site" content={seo.structuredData.url} />
-                <meta name="twitter:creator" content="@ridermansb" />
+                <meta name="twitter:image:alt" content={seo.structuredData.name} />
+                <meta name="twitter:creator" content={seo.structuredData.performer.name} />
             </Helmet>
 
             <div className="uk-container">
