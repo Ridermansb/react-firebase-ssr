@@ -77,10 +77,11 @@ module.exports = function (env, args) {
                 },
                 {
                     test: /\.(gif|png|jpe?g)$/i,
-                    use: {
-                        loader: 'file-loader',
-                        query: {outputPath: 'assets/images/'},
-                    },
+                    use: { loader: "ignore-loader" },
+                    // use: {
+                        // loader: 'file-loader',
+                        // query: {outputPath: 'assets/images/'},
+                    // },
                 },
                 {
                     test: /\.css$/i,
