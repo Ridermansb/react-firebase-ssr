@@ -1,4 +1,4 @@
-name: deploy
+name: deploy-ssr
 
 on:
   push:
@@ -7,7 +7,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
     outputs:
       version: ${{ steps.versionGenerator.outputs.version }}
     steps:

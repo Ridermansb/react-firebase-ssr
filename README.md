@@ -4,6 +4,11 @@
 <p align="center">
     <img src="demo.png" />
 </p>
+<p align="center">
+    <a href="https://github.com/Ridermansb/react-firebase-ssr/actions?query=workflow%3Adeploy">
+        <img src="https://github.com/Ridermansb/react-firebase-ssr/workflows/deploy/badge.svg" alt="">
+    </a>
+</p>
 
 ### Pre-requisites
 
