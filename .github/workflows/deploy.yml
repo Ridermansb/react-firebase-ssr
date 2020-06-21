@@ -44,11 +44,11 @@ jobs:
     
     - name: Install app dependencies
       if: steps.cache-node_modules.outputs.cache-hit != 'true'
-      run: npm ci --prefer-offline --no-audit --progress=false
-    
+      run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
+
     - name: Install functions dependencies
       if: steps.cache-functions-node_modules.outputs.cache-hit != 'true'
-      run: npm ci --prefer-offline --no-audit --progress=false
+      run: npm ci --prefer-offline --no-audit --progress=false --unsafe-perm
       working-directory: ./functions
         
   build-ssr:

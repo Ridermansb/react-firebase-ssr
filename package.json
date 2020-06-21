@@ -1,6 +1,6 @@
 {
     "name": "react-firebase-ssr",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "description": "React template with SSR by using Firebase",
     "main": "index.js",
     "scripts": {
