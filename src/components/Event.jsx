@@ -39,7 +39,7 @@ const Event = () => {
             },
             "performer": {
                 "@type": "Person",
-                ...event.performer
+                "name": event.performer,
             },
             "organizer": {
                 "@type": "Organization",

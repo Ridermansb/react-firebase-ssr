@@ -119,3 +119,5 @@ Tools that can help you in some way
 [smallseotools]: https://smallseotools.com/
 [linkedin-post-inspector]: https://www.linkedin.com/post-inspector/
 [twitter-card-validator]: https://cards-dev.twitter.com/validator
+[data-highlighter]: https://www.google.com/webmasters/data-highlighter/u/0/tagger?sourceId=106074205&hl=en
+[markup-helper]: https://www.google.com/webmasters/markup-helper/u/0/tagger?sourceId=106075397

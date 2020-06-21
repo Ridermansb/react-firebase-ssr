@@ -37,7 +37,7 @@ const App = () => {
             </Helmet>
             <Event/>
             {__VERSION__ && (
-                <div className="uk-position-fixed uk-position-bottom-center">
+                <div className="uk-text-center">
                     <p className="uk-text-meta">
                         v{__VERSION__}
                     </p>
