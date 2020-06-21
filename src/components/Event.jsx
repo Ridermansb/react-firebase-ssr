@@ -28,10 +28,16 @@ const Event = () => {
     return (
         <Fragment>
             <Helmet encodeSpecialCharacters={false}>
-                <title itemProp="name">BReact + SSR + Firebase</title>
+                <title itemProp="name">React + SSR + Firebase</title>
                 <script type="application/ld+json">
                     {JSON.stringify(seo.structuredData)}
                 </script>
+                <meta property="og:title" content={seo.structuredData.name} />
+                <meta property="og:site_name" content={seo.structuredData.name} />
+                <meta property="og:url" content="http://react-firebase-ssr.ridermansb.dev/" />
+                <meta property="og:description" content="React template with SSR by using Firebase" />
+                <meta property="og:type" content="website" />
+                <meta property="og:image" content="https://pouch.jumpshare.com/preview/fNNzXcf3VqTmgG2QgzQBHb7UtmbdpeQsK6u4lzpvdN_DOqjHy_GA9ZnUjtsI_Pn0HLYWEli2krjn64M8UyJNeTJprjKJn4snkOQIlHyX-Do" /> 
             </Helmet>
 
             <div className="uk-container">

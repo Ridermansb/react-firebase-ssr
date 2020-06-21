@@ -1,7 +1,7 @@
 const functions = require('firebase-functions');
 const { SitemapStream, streamToPromise } = require('sitemap')
 const { createGzip } = require('zlib')
-const ssrHandle = require('./ssr');
+const ssrHandle = require('./ssr.js');
 
 const runtimeOpts = {
     memory: '512MB'

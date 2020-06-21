@@ -83,6 +83,8 @@ npmR start:emulators
  * [schema-markup-generator][1] or [json-ld-generator][json-ld-generator]
  * [seositecheckup.com][seositecheckup]
  * [rich-results][rich-results] or [structured-data][structured-data]
+ * [facebook-og-debug][facebook-og-debug]
+ * [smallseotools][smallseotools]
 
 
 ### Other tools
@@ -101,3 +103,5 @@ npmR start:emulators
 [pagespeed]: https://developers.google.com/speed/pagespeed/insights/
 [rich-results]: https://search.google.com/test/rich-results?utm_campaign=devsite&utm_medium=jsonld&utm_source=recipe
 [structured-data]: https://search.google.com/structured-data/testing-tool
+[facebook-og-debug]: https://developers.facebook.com/tools/debug/
+[smallseotools]: https://smallseotools.com/
