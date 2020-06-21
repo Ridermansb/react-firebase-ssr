@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html>
 <head>
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <title><!-- SSR --></title>
+    <!-- SSR-meta -->
     <link rel="preconnect" href="https://firebaseinstallations.googleapis.com">
     <link rel="preconnect" href="https://firebaseremoteconfig.googleapis.com">
     <link rel="preconnect" href="https://firebaselogging-pa.googleapis.com">
+    <!-- SSR-link -->
     <style>
         link[rel="manifest"] {
             --pwacompat-splash-font: bold 24px Cursive;
         }
     </style>
     <script><%= htmlWebpackPlugin.options.inline %></script>
+    <!-- SSR-script -->
 </head>
 <body>
-<div id="root"></div>
+<div id="root"><!-- SSR --></div>
 </body>
 </html>

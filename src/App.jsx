@@ -31,8 +31,10 @@ const App = () => {
         >
             <Helmet
                 htmlAttributes={htmlAttributes} // amp takes no value
-                titleTemplate="%s | React template with SSR by using Firebase"
-                defaultTitle="react-firebase-ssr"/>
+                titleTemplate="%s | React template with SSR by using Firebase (From Helmet)"
+                defaultTitle="react-firebase-ssr">
+                <title>Home</title>
+            </Helmet>
             <Event/>
             {__VERSION__ && (
                 <div className="uk-position-fixed uk-position-bottom-center">

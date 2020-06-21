@@ -47,7 +47,7 @@ module.exports = function (env, args) {
             }),
             new CopyWebpackPlugin({
                 patterns: [
-                    {from: '../public/', to: '../dist/public/' },
+                    {from: '../public/client.html', to: '../dist/public/client.html' },
                 ],
             }),
             new webpack.DefinePlugin({
@@ -60,7 +60,7 @@ module.exports = function (env, args) {
         resolve: {
             extensions: ['.js', '.jsx'],
         },
-        externals: [nodeExternals()],
+        externals: [nodeExternals(), 'react-helmet'],
         module: {
             rules: [
                 {

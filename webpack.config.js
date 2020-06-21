@@ -73,7 +73,6 @@ module.exports = function (env, args) {
             }),
             new HtmlWebpackPlugin({
                 filename: 'client.html',
-                title: pkg.name,
                 meta: {
                     "description": pkg.description,
                     "msapplication-TileColor": "#1e87f0",

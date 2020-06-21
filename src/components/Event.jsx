@@ -27,8 +27,8 @@ const Event = () => {
     
     return (
         <Fragment>
-            <Helmet>
-                <title itemProp="name">React + SSR + Firebase</title>
+            <Helmet encodeSpecialCharacters={false}>
+                <title itemProp="name">BReact + SSR + Firebase</title>
                 <script type="application/ld+json">
                     {JSON.stringify(seo.structuredData)}
                 </script>
