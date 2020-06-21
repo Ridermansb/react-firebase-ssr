@@ -1,5 +1,17 @@
 {
   "projects": {
     "default": "template-react-firebase-ssr"
+  },
+  "targets": {
+    "template-react-firebase-ssr": {
+      "hosting": {
+        "ssr": [
+          "template-react-firebase-ssr"
+        ],
+        "no-ssr": [
+          "template-react-firebase-no-ssr"
+        ]
+      }
+    }
   }
 }

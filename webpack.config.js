@@ -20,7 +20,7 @@ const pkg = require('./package.json');
 require('dotenv').config();
 
 /**
- * Assume verion as git describe
+ * Assume version as git describe
  * @see https://medium.com/bind-solution/dynamic-version-update-with-git-describe-477e8cd2a306
  */
 const gitRevisionPlugin = new GitRevisionPlugin();
@@ -30,7 +30,7 @@ const srcFolder = resolve(__dirname, 'src');
 module.exports = function (env, args) {
     const mode = args.mode || 'development'
     const appVersion = gitRevisionPlugin.version();
-    console.log('Building version "%s" with webpack in "%s" mode', appVersion, mode);
+    console.log('Building %s version "%s" with webpack in "%s" mode', env.ssr ? 'SSR' : 'CSR', appVersion, mode);
 
     const defaultConfig = {
         target: 'web',
@@ -73,7 +73,8 @@ module.exports = function (env, args) {
                 __PRODUCTION__: JSON.stringify(mode === 'production'),
             }),
             new HtmlWebpackPlugin({
-                filename: 'client.html',
+                filename: env.ssr ? 'client.html' : 'index.html',
+                title: env.ssr ? '<!-- SSR -->' : 'React template with SSR by using Firebase',
                 meta: {
                     "description": pkg.description,
                     "msapplication-TileColor": "#1e87f0",
@@ -107,7 +108,7 @@ module.exports = function (env, args) {
                 favicons: {
                     appName: pkg.name,
                     appDescription: pkg.description,
-                    developerName: 'ridermansb',
+                    developerName: pkg.author,
                     background: '#fff',
                     theme_color: '#333',
                     icons: {

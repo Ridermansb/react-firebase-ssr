@@ -1,62 +1,127 @@
 {
-    "hosting": {
-        "public": "public/",
-        "ignore": [
-            "firebase.json",
-            "**/.*",
-            "**/node_modules/**"
-        ],
-        "cleanUrls": true,
-        "trailingSlash": false,
-        "rewrites": [
-            {
-                "source": "/",
-                "function": "ssr"
-            },
-            {
-                "source": "/sitemap.xml",
-                "function": "sitemap"
-            }
-        ],
-        "headers": [
-            {
-                "source": "**/*.@(js|css)",
-                "headers": [
-                    {
-                        "key": "Cache-Control",
-                        "value": "max-age=604800"
-                    }
-                ]
-            },
-            {
-                "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
-                "headers": [
-                    {
-                        "key": "Access-Control-Allow-Origin",
-                        "value": "*"
-                    }
-                ]
-            },
-            {
-                "source": "**/*.@(jpg|jpeg|gif|png)",
-                "headers": [
-                    {
-                        "key": "Cache-Control",
-                        "value": "max-age=604800"
-                    }
-                ]
-            },
-            {
-                "source": "404.html",
-                "headers": [
-                    {
-                        "key": "Cache-Control",
-                        "value": "max-age=300"
-                    }
-                ]
-            }
-        ]
-    },
+    "hosting": [
+        {
+            "public": "public/",
+            "target": "ssr",
+            "site": "template-react-firebase-ssr",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "cleanUrls": true,
+            "trailingSlash": false,
+            "rewrites": [
+                {
+                    "source": "/",
+                    "function": "ssr"
+                },
+                {
+                    "source": "/sitemap.xml",
+                    "function": "sitemap"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "**/*.@(js|css)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "max-age=604800"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+                    "headers": [
+                        {
+                            "key": "Access-Control-Allow-Origin",
+                            "value": "*"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(jpg|jpeg|gif|png)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "max-age=604800"
+                        }
+                    ]
+                },
+                {
+                    "source": "404.html",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "max-age=300"
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "public": "public/",
+            "target": "no-ssr",
+            "site": "template-react-firebase-no-ssr",
+            "ignore": [
+                "firebase.json",
+                "**/.*",
+                "**/node_modules/**"
+            ],
+            "cleanUrls": true,
+            "trailingSlash": false,
+            "rewrites": [
+                {
+                    "source": "**",
+                    "function": "ssr"
+                },
+                {
+                    "source": "/sitemap.xml",
+                    "function": "sitemap"
+                }
+            ],
+            "headers": [
+                {
+                    "source": "**/*.@(js|css)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "max-age=604800"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+                    "headers": [
+                        {
+                            "key": "Access-Control-Allow-Origin",
+                            "value": "*"
+                        }
+                    ]
+                },
+                {
+                    "source": "**/*.@(jpg|jpeg|gif|png)",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "max-age=604800"
+                        }
+                    ]
+                },
+                {
+                    "source": "404.html",
+                    "headers": [
+                        {
+                            "key": "Cache-Control",
+                            "value": "max-age=300"
+                        }
+                    ]
+                }
+            ]
+        }        
+    ],
     "emulators": {
         "functions": {
             "port": 8001
