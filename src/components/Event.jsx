@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import { Helmet } from 'react-helmet';
 import Time from "@components/Time";
+import banner from '../../banner.png';
 
 const Event = () => {
 
@@ -11,7 +12,7 @@ const Event = () => {
             "name": "React + SSR + Firebase = ♥️",
             "url": "http://react-firebase-ssr.ridermansb.dev/",
             "description": "React template with SSR by using Firebase",
-            "image": "https://pouch.jumpshare.com/preview/fNNzXcf3VqTmgG2QgzQBHb7UtmbdpeQsK6u4lzpvdN_DOqjHy_GA9ZnUjtsI_Pn0HLYWEli2krjn64M8UyJNeTJprjKJn4snkOQIlHyX-Do",
+            "image": banner,
             "startDate": "2020-06-23T18:00",
             "endDate": "2020-06-23T19:00",
             "eventStatus": "https://schema.org/EventScheduled",
@@ -40,6 +41,7 @@ const Event = () => {
                 <meta property="og:image" content={seo.structuredData.image} />
                 <meta property="og:locale" content="pt_BR" />
                 
+                <meta property="fb:app_id" content={process.env.FACEBOOK_APP_ID} />
                 <meta name="twitter:card" content={seo.structuredData.description} />
                 <meta name="twitter:site" content={seo.structuredData.url} />
                 <meta name="twitter:creator" content="@ridermansb" />

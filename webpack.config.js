@@ -65,6 +65,7 @@ module.exports = function (env, args) {
                 FIREBASE_MESSAGINGSENDERID: '',
                 FIREBASE_MEASUREMENTID: '',
                 FIREBASE_APIKEY: '',
+                FACEBOOK_APP_ID: '',
             }),
             new webpack.DefinePlugin({
                 __VERSION__: JSON.stringify(appVersion),

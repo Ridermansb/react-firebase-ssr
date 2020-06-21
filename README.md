@@ -85,6 +85,7 @@ npmR start:emulators
  * [rich-results][rich-results] or [structured-data][structured-data]
  * [facebook-og-debug][facebook-og-debug]
  * [linkedin-post-inspector][linkedin-post-inspector]
+ * [twitter-card-validator][twitter-card-validator]
  * [smallseotools][smallseotools]
 
 
@@ -107,3 +108,4 @@ npmR start:emulators
 [facebook-og-debug]: https://developers.facebook.com/tools/debug/
 [smallseotools]: https://smallseotools.com/
 [linkedin-post-inspector]: https://www.linkedin.com/post-inspector/
+[twitter-card-validator]: https://cards-dev.twitter.com/validator
