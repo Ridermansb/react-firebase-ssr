@@ -87,7 +87,6 @@ jobs:
           FIREBASE_MESSAGINGSENDERID: ${{ secrets.FIREBASE_MESSAGINGSENDERID }}
           FIREBASE_MEASUREMENTID: ${{ secrets.FIREBASE_MEASUREMENTID }}
           FIREBASE_APIKEY: ${{ secrets.FIREBASE_APIKEY }}
-          PUBLIC_PATH: ${{ secrets.PUBLIC_PATH }}
           VERSION: ${{ steps.versionGenerator.outputs.version }}
       run: npm run build:ssr
 
@@ -136,7 +135,6 @@ jobs:
           FIREBASE_MESSAGINGSENDERID: ${{ secrets.FIREBASE_MESSAGINGSENDERID }}
           FIREBASE_MEASUREMENTID: ${{ secrets.FIREBASE_MEASUREMENTID }}
           FIREBASE_APIKEY: ${{ secrets.FIREBASE_APIKEY }}
-          PUBLIC_PATH: ${{ secrets.PUBLIC_PATH }}
           VERSION: ${{ steps.versionGenerator.outputs.version }}
       run: npm run build:csr
 
