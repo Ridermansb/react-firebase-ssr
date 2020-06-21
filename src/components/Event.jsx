@@ -41,9 +41,12 @@ const Event = () => {
                 <meta name="author" content={seo.structuredData.performer.name}/>
                 
                 <meta name="image" property="og:image" content={seo.structuredData.image}/>
+                <meta property="og:image" content={seo.structuredData.image}/>
+                <meta property="og:image:secure" content={seo.structuredData.image}/>
                 <meta property="og:image:width" content="1080"/>
                 <meta property="og:image:height" content="1080"/>
                 <meta property="og:image:type" content="image/jpeg"/>
+                <meta property="og:image:alt" content={seo.structuredData.name}/>
                 
                 <meta property="og:title" content={seo.structuredData.name} />
                 <meta property="og:site_name" content={seo.structuredData.name} />
