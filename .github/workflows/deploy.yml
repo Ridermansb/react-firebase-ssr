@@ -77,8 +77,6 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: ${{ runner.os }}-node-
     
-    - run: npm run fbVersion
-    
     - name: Build
       env:
           FIREBASE_APPID: ${{ secrets.FIREBASE_APPID }}
@@ -196,6 +194,10 @@ jobs:
   deploy-ssr:
     runs-on: ubuntu-latest
     needs: [build-ssr, install]
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
+      PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2-beta
@@ -226,17 +228,15 @@ jobs:
         path: public
         
     - name: Deploy to Firebase
-      uses: w9jds/firebase-action@v1.3.1
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
-        PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
-      with:
-        args: deploy --only hosting:ssr -f --non-interactive -m \"SSR build v${{ needs.build-ssr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
+      run: npm run deploy -- --only hosting:ssr -f --non-interactive -m \"SSR build v${{ needs.build-ssr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
 
   deploy-csr:
     runs-on: ubuntu-latest
     needs: [build-csr, install]
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
+      PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2-beta
@@ -267,17 +267,15 @@ jobs:
         path: public
 
     - name: Deploy to Firebase
-      uses: w9jds/firebase-action@v1.3.1
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
-        PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
-      with:
-        args: deploy --only hosting:no-ssr -f --non-interactive -m \"CSR build v${{ needs.build-csr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
+      run: npm run deploy -- --only hosting:no-ssr -f --non-interactive -m \"CSR build v${{ needs.build-ssr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
 
   deploy-functions:
     runs-on: ubuntu-latest
     needs: [build-functions, install]
+    env:
+      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
+      PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2-beta
@@ -308,13 +306,7 @@ jobs:
         path: public
         
     - name: Deploy to Firebase
-      uses: w9jds/firebase-action@v1.3.1
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
-        PROJECT_ID: ${{ secrets.FIREBASE_PROJECTID }}
-      with:
-        args: deploy --only functions -f --non-interactive -m \"Functions build v${{ needs.install.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
+      run: npm run deploy -- --only functions -f --non-interactive -m \"Functions build v${{ needs.install.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
 
 #  audit:
 #    runs-on: ubuntu-latest
