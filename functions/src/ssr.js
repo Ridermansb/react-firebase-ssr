@@ -24,7 +24,6 @@ const serverRenderer = (req, res) => {
     const rootIndex = htmlIndex.indexOf('<!-- SSR-root --></div>');
     const withoutComponentHTML = htmlIndex.substr(0, rootIndex);
 
-    console.log('Render helmet...');
     const helmet = Helmet.renderStatic();
     const htmlStart = withoutComponentHTML
         .replace('<html>',`<html ${helmet.htmlAttributes.toString()}>`)
@@ -34,7 +33,6 @@ const serverRenderer = (req, res) => {
         .replace('<!-- SSR-script -->', helmet.script.toString())
     res.write(htmlStart);
     
-    console.log('pipe component...');
     componentStream.pipe(res, { end: false });
 
     const htmlEnd = htmlIndex.substring(rootIndex, htmlIndex.length);

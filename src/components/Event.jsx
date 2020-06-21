@@ -1,7 +1,8 @@
-import React, {Fragment, useMemo} from "react";
+import React, {useEffect, useMemo, useRef} from "react";
 import {Helmet} from 'react-helmet';
 import Time from "@components/Time";
 import dayjs from "dayjs";
+import UIkit from "uikit";
 import banner from '../../banner.jpg';
 
 const Event = () => {
@@ -47,6 +48,14 @@ const Event = () => {
             }
         }
     }
+    
+    const imageEventRef = useRef(null);
+    useEffect(() => {
+        UIkit.img(imageEventRef.current);
+        return () => {
+            UIkit.img(imageEventRef.current).$destroy();
+        }
+    }, [imageEventRef])
 
     return (
         <div className="uk-padding-bottom uk-margin-bottom">
@@ -89,8 +98,8 @@ const Event = () => {
                 <Time/>
 
                 <div className="uk-card uk-card-default">
-                    <div className="uk-card-media-top">
-                        <img src={seo.structuredData.image} alt={seo.structuredData.name}/>
+                    <div className="uk-card-media-top uk-text-center">
+                        <img data-src={seo.structuredData.image} alt={seo.structuredData.name} width="345px" ref={imageEventRef} />
                     </div>
                     <div className="uk-card-body">
                         <h3 className="uk-card-title">{seo.structuredData.name}</h3>
@@ -110,7 +119,7 @@ const Event = () => {
                     <dl className="uk-description-list">
                         <dt className="uk-text-bold">Quem?</dt>
                         <dd>
-                            {event.performer} / <a href={event.performer.url} target="_blank">{event.organizer.name}</a>
+                            {event.performer} / <a href={event.performer.url} rel="noopener noreferrer" target="_blank">{event.organizer.name}</a>
                         </dd>
                     </dl>
                 </div>
