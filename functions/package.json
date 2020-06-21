@@ -17,6 +17,7 @@
         "firebase-functions": "^3.6.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
+        "react-helmet": "^6.1.0",
         "sitemap": "^6.1.5",
         "zlib": "^1.0.5"
     },
