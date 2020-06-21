@@ -10,20 +10,25 @@ const Event = () => {
             "@context": "https://schema.org",
             "@type": "Event",
             "name": "React + SSR + Firebase = ♥️",
-            "url": "http://react-firebase-ssr.ridermansb.dev/",
+            "url": "https://react-firebase-ssr.ridermansb.dev/",
             "description": "Exemplo usando React SSR rodando na estrutura do firebase cloud functions",
             "image": `https://react-firebase-ssr.ridermansb.dev${banner}`,
-            "startDate": "2020-06-23T18:00",
-            "endDate": "2020-06-23T19:00",
+            "startDate": "2020-06-23T18:00-03:00",
+            "endDate": "2020-06-23T19:00-03:00",
             "eventStatus": "https://schema.org/EventScheduled",
             "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
             "location": {
                 "@type": "VirtualLocation",
-                "url": ""
+                "url": "https://youtube.com/"
             },
             "performer": {
                 "@type": "Person",
                 "name": "ridermansb"
+            },
+            "organizer": {
+                "@type": "Organization",
+                "name": "e-Core",
+                "url": "https://e-core.com/"
             }
         }
     }
