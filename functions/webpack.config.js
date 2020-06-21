@@ -17,7 +17,7 @@ const srcClientFolder = resolve('../src');
 
 module.exports = function (env, args) {
     const mode = args.mode || 'development'
-    const appVersion = gitRevisionPlugin.version();
+    const appVersion = process.env.VERSION || gitRevisionPlugin.version();
     console.log('Building functions "%s" with webpack in "%s" mode', appVersion, mode);
 
     return {
@@ -43,7 +43,6 @@ module.exports = function (env, args) {
         plugins: [
             new webpack.EnvironmentPlugin({
                 NODE_ENV: 'development',
-                VERSION: appVersion,
                 FACEBOOK_APP_ID: '',
                 CI: false,
             }),
