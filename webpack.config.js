@@ -194,7 +194,6 @@ module.exports = function (env, args) {
                             options: {
                                 hmr: false, // mode !== 'production' || process.env.NODE_ENV === 'development',
                                 esModule: true,
-                                reloadAll: true,
                             },
                         },
                         {
@@ -222,12 +221,6 @@ module.exports = function (env, args) {
                     loader: 'svg-inline-loader',
                 },
             ]
-        },
-        stats: {
-            // Examine all modules
-            maxModules: Infinity,
-            // Display bailout reasons
-            // optimizationBailout: true,
         },
     };
 
