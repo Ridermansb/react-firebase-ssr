@@ -8,7 +8,7 @@
         "start:emulators": "firebase emulators:start --only functions,hosting",
         "start:serve": "firebase serve --only functions,hosting",
         "shell": "firebase functions:shell",
-        "start": "webpack-dev-server",
+        "start": "webpack-dev-server --env.csr",
         "build:ssr": "cross-env NODE_ENV=production webpack --env.ssr -p",
         "build:csr": "cross-env NODE_ENV=production webpack --env.csr -p",
         "deploy": "firebase deploy",
