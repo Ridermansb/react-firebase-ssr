@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import { Helmet } from 'react-helmet';
 import Time from "@components/Time";
-import banner from '../../banner.png';
+import banner from '../../banner.jpg';
 
 const Event = () => {
 
@@ -39,7 +39,12 @@ const Event = () => {
                 <title itemProp="name">{seo.structuredData.name}</title>
                 <script type="application/ld+json">{JSON.stringify(seo.structuredData)}</script>
                 <meta name="author" content={seo.structuredData.performer.name}/>
+                
                 <meta name="image" property="og:image" content={seo.structuredData.image}/>
+                <meta property="og:image:width" content="1080"/>
+                <meta property="og:image:height" content="1080"/>
+                <meta property="og:image:type" content="image/jpeg"/>
+                
                 <meta property="og:title" content={seo.structuredData.name} />
                 <meta property="og:site_name" content={seo.structuredData.name} />
                 <meta property="og:url" content={seo.structuredData.url} />
