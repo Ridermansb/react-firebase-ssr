@@ -267,7 +267,7 @@ jobs:
         path: public
 
     - name: Deploy to Firebase
-      run: npm run deploy -- --only hosting:no-ssr -f --non-interactive -m \"CSR build v${{ needs.build-ssr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
+      run: npm run deploy -- --only hosting:no-ssr -f --non-interactive -m \"CSR build v${{ needs.build-csr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action\"
 
   deploy-functions:
     runs-on: ubuntu-latest
