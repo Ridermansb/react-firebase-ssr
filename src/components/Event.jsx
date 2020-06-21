@@ -49,6 +49,7 @@ const Event = () => {
                 <meta property="og:locale" content="pt_BR" />
                 
                 <meta property="fb:app_id" content={process.env.FACEBOOK_APP_ID} />
+                <meta property="fb:app:id" content={process.env.FACEBOOK_APP_ID} />
 
                 <meta name="twitter:card" content="summary" />
                 <meta name="twitter:site" content={`@${seo.structuredData.name}`} />
