@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
 const React = require('react');
-const { renderToString } = require('react-dom/server');
+const { renderToNodeStream } = require('react-dom/server');
 const express = require('express');
 const compression = require('compression');
 const {Helmet} = require("react-helmet");
@@ -18,18 +18,24 @@ const htmlIndex = fs.readFileSync(indexHtmlPath, 'utf8');
 
 const serverRenderer = (req, res) => {
     res.set('Cache-Control', 'public, max-age=60, s-maxage=180');
+    
+    const componentStream = renderToNodeStream(<App />)
+    res.write(htmlIndex);
+    componentStream.pipe(res, { end: false });
 
-    const html = renderToString(<App />)
     const helmet = Helmet.renderStatic();
-    return res.send(
-        htmlIndex
-            .replace('<html>',`<html ${helmet.htmlAttributes.toString()}>`)
-            .replace('<title><!-- SSR --></title>', helmet.title.toString())
-            .replace('<!-- SSR-meta -->', helmet.meta.toString())
-            .replace('<!-- SSR-link -->', helmet.link.toString())
-            .replace('<!-- SSR-script -->', helmet.script.toString())
-            .replace('<div id="root"><!-- SSR --></div>', `<div id="root">${html}</div>`)
-    )
+    const htmlEnd = htmlIndex
+        .replace('<html>',`<html ${helmet.htmlAttributes.toString()}>`)
+        .replace('<title><!-- SSR --></title>', helmet.title.toString())
+        .replace('<!-- SSR-meta -->', helmet.meta.toString())
+        .replace('<!-- SSR-link -->', helmet.link.toString())
+        .replace('<!-- SSR-script -->', helmet.script.toString())
+        .replace('<div id="root"><!-- SSR --></div>', `<div id="root">${html}</div>`);
+
+    return componentStream.on("end", () => {
+        res.write(htmlEnd);
+        res.end();
+    });
 }
 app.get('**', serverRenderer)
 
