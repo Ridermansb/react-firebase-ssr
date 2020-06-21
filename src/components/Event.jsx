@@ -45,11 +45,11 @@ const Event = () => {
                 
                 <meta property="fb:app_id" content={process.env.FACEBOOK_APP_ID} />
 
+                <meta name="twitter:card" content="summary" />
                 <meta name="twitter:site" content={`@${seo.structuredData.name}`} />
                 <meta name="twitter:title" content={seo.structuredData.name} />
                 <meta name="twitter:description" content={seo.structuredData.description} />
                 <meta name="twitter:image" content={seo.structuredData.image} />
-                <meta name="twitter:card" content={seo.structuredData.description} />
                 <meta name="twitter:image:alt" content={seo.structuredData.name} />
                 <meta name="twitter:creator" content={seo.structuredData.performer.name} />
             </Helmet>
