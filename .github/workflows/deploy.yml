@@ -226,7 +226,7 @@ jobs:
         path: public
         
     - name: Deploy to Firebase
-      run: npm run deploy -- --only hosting:ssr -f --non-interactive -m "SSR build v${{ needs.build-ssr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action"
+      run: npm run deploy -- --only hosting:ssr -f --non-interactive -m "SSR build ${{ needs.build-ssr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action"
 
   deploy-csr:
     runs-on: ubuntu-latest
@@ -265,7 +265,7 @@ jobs:
         path: public
 
     - name: Deploy to Firebase
-      run: npm run deploy -- --only hosting:no-ssr -f --non-interactive -m "CSR build v${{ needs.build-csr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action"
+      run: npm run deploy -- --only hosting:no-ssr -f --non-interactive -m "CSR build ${{ needs.build-csr.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action"
 
   deploy-functions:
     runs-on: ubuntu-latest
@@ -304,7 +304,7 @@ jobs:
         path: functions/dist
         
     - name: Deploy to Firebase
-      run: npm run deploy -- --only functions -f --non-interactive -m "Functions build v${{ needs.install.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action"
+      run: npm run deploy -- --only functions -f --non-interactive -m "Functions build ${{ needs.install.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action"
 
 #  audit:
 #    runs-on: ubuntu-latest

@@ -10,6 +10,9 @@
     </a>
 </p>
 
+ * SSR Live: https://react-firebase-ssr.ridermansb.dev/
+ * CSR Live: https://react-firebase-nossr.ridermansb.dev/
+
 ### Pre-requisites
 
 Make sure you have [`firebase-tools`][firebase-tools] installed
