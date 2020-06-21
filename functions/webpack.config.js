@@ -1,6 +1,6 @@
 /* eslint-env node */
 
-const {resolve} = require('path');
+const {join, resolve} = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
@@ -23,7 +23,8 @@ module.exports = function (env, args) {
     return {
         target: 'node',
         entry: {
-            index: srcFolder
+            index: srcFolder,
+            ssr: join(srcFolder, 'ssr.js')
         },
         cache: true,
         mode: 'production',

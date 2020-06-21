@@ -3,9 +3,7 @@ const { SitemapStream, streamToPromise } = require('sitemap')
 const { createGzip } = require('zlib')
 const ssrHandle = require('./ssr.js');
 
-const runtimeOpts = {
-    memory: '512MB'
-}
+const runtimeOpts = {memory: '512MB'}
 exports.ssr = functions.runWith(runtimeOpts).https.onRequest(ssrHandle);
 
 // Sitemap route

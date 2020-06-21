@@ -70,13 +70,13 @@ jobs:
 
     - name: Optimizing images
       run: mogrify -filter Triangle -define filter:support=2 -unsharp 0.25x0.08+8.3+0.045 -dither None -posterize 136 -quality 82 -define jpeg:fancy-upsampling=off -define png:compression-filter=5 -define png:compression-level=9 -define png:compression-strategy=1 -define png:exclude-chunk=all -interlace none -colorspace sRGB *.png
-      working-directory: public/assets
+      working-directory: ./public/assets
       
     - name: Build functions
       env:
-          VERSION: ${{ steps.versionGenerator.outputs.version }}
+        VERSION: ${{ steps.versionGenerator.outputs.version }}
       run: NODE_ENV=production npm run build
-      working-directory: functions
+      working-directory: ./functions
 
     - uses: actions/upload-artifact@v2
       with:
