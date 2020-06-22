@@ -78,6 +78,8 @@ const Event = () => {
                 <meta property="og:title" content={seo.structuredData.name}/>
                 <meta property="og:site_name" content={seo.structuredData.name}/>
                 <meta property="og:url" content={seo.structuredData.url}/>
+                <meta name="description" content={seo.structuredData.description} />
+                <meta name="keywords" content="react, firebase, ssr, evento, csr" />
                 <meta property="og:description" content={seo.structuredData.description}/>
                 <meta property="og:type" content="website"/>
                 <meta property="og:locale" content="pt_BR"/>
