@@ -10,7 +10,7 @@ const Event = () => {
     const event = useMemo(() => ({
         name: "React + SSR + Firebase = ♥️",
         url: "https://react-firebase-ssr.ridermansb.dev/",
-        shortDescription: "Como criar e fazer o deploy de um app em React+SSR com Firebase", 
+        shortDescription: "Como criar e fazer o deploy de um app em React+SSR com Firebase",
         description: "Você domina React e quer dar os próximos passos nessa tecnologia para melhorar a performance e o ranking do seu app? No próximo evento online promovido por e-Core codeLab, nossos especialistas de software irão falar sobre os prós e contras de SSR e como fazer o deploy de um app em React + SSR com Firebase, ferramenta que irá simplificar o seu trabalho. Junte-se a nós no dia 23/06, às 18h, para saber tudo sobre o tema #wecore #reactjs #react #firebase",
         image: banner,
         startDate: dayjs(new Date(2020, 5, 23, 18, 0, 0)),
@@ -47,15 +47,18 @@ const Event = () => {
                 "@type": "Organization",
                 ...event.organizer
             },
-              "offers": {
+            "offers": {
                 "@type": "Offer",
                 "description": "Evento Gratuito",
                 "url": "https://react-firebase-ssr.ridermansb.dev/",
-                "price": "0"
-              }
+                "availability": "http://schema.org/InStock",
+                "priceCurrency": "BRL",
+                "price": "0",
+                "validFrom": "2020-05-21T12:00"
+            }
         }
     }
-    
+
     const imageEventRef = useRef(null);
     useEffect(() => {
         UIkit.img(imageEventRef.current);
@@ -79,13 +82,13 @@ const Event = () => {
                 <meta property="og:image:type" content="image/jpeg"/>
                 <meta property="og:image:alt" content={seo.structuredData.name}/>
 
-                <meta property="og:type" content="website" />
+                <meta property="og:type" content="website"/>
 
                 <meta property="og:title" content={seo.structuredData.name}/>
                 <meta property="og:site_name" content={seo.structuredData.name}/>
                 <meta property="og:url" content={seo.structuredData.url}/>
-                <meta name="description" content={seo.structuredData.description} />
-                <meta name="keywords" content="react, firebase, ssr, evento, csr" />
+                <meta name="description" content={seo.structuredData.description}/>
+                <meta name="keywords" content="react, firebase, ssr, evento, csr"/>
                 <meta property="og:description" content={seo.structuredData.description}/>
                 <meta property="og:type" content="website"/>
                 <meta property="og:locale" content="pt_BR"/>
@@ -110,7 +113,8 @@ const Event = () => {
 
                 <div className="uk-card uk-card-default">
                     <div className="uk-card-media-top uk-text-center">
-                        <img data-src={seo.structuredData.image} alt={seo.structuredData.name} width="345px" ref={imageEventRef} />
+                        <img data-src={seo.structuredData.image} alt={seo.structuredData.name} width="345px"
+                             ref={imageEventRef}/>
                     </div>
                     <div className="uk-card-body">
                         <h2 className="uk-card-title">{seo.structuredData.name}</h2>
@@ -134,7 +138,9 @@ const Event = () => {
                     <dl className="uk-description-list">
                         <dt className="uk-text-bold">Quem?</dt>
                         <dd>
-                            <a href="https://about.me/ridermansb" rel="noopener noreferrer">{event.performer}</a>/ <a href={event.organizer.url} rel="noopener noreferrer" target="_blank">{event.organizer.name}</a>
+                            <a href="https://about.me/ridermansb" rel="noopener noreferrer">{event.performer}</a>/ <a
+                            href={event.organizer.url} rel="noopener noreferrer"
+                            target="_blank">{event.organizer.name}</a>
                         </dd>
                     </dl>
                 </div>
