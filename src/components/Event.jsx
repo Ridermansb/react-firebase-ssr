@@ -134,7 +134,7 @@ const Event = () => {
                     <dl className="uk-description-list">
                         <dt className="uk-text-bold">Quem?</dt>
                         <dd>
-                            <a href="https://about.me/ridermansb" rel="noopener noreferrer">{event.performer}</a>/ <a href={event.performer.url} rel="noopener noreferrer" target="_blank">{event.organizer.name}</a>
+                            <a href="https://about.me/ridermansb" rel="noopener noreferrer">{event.performer}</a>/ <a href={event.organizer.url} rel="noopener noreferrer" target="_blank">{event.organizer.name}</a>
                         </dd>
                     </dl>
                 </div>
