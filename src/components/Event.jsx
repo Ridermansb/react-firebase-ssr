@@ -46,7 +46,13 @@ const Event = () => {
             "organizer": {
                 "@type": "Organization",
                 ...event.organizer
-            }
+            },
+              "offers": {
+                "@type": "Offer",
+                "description": "Evento Gratuito",
+                "url": "https://react-firebase-ssr.ridermansb.dev/",
+                "price": "0"
+              }
         }
     }
     
