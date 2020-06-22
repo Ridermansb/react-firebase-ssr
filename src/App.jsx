@@ -7,6 +7,7 @@ import calendar from 'dayjs/plugin/calendar';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import isBetween from 'dayjs/plugin/isBetween';
+import 'dayjs/locale/pt-br';
 import Icons from 'uikit/dist/js/uikit-icons';
 import 'uikit/dist/css/uikit.css';
 import './assets/style.css';
@@ -15,11 +16,22 @@ import {Helmet} from "react-helmet";
 
 UIkit.use(Icons);
 
+dayjs.locale('pt-br')
+
 dayjs.extend(relativeTime);
 dayjs.extend(weekOfYear);
 dayjs.extend(localizedFormat);
 dayjs.extend(isBetween);
 dayjs.extend(calendar)
+
+dayjs().calendar(null, {
+    sameDay: '[Hoje at] h:mm A', // The same day ( Today at 2:30 AM )
+    nextDay: '[Amanhã]', // The next day ( Tomorrow at 2:30 AM )
+    nextWeek: 'dddd', // The next week ( Sunday at 2:30 AM )
+    lastDay: '[Ontem]', // The day before ( Yesterday at 2:30 AM )
+    lastWeek: '[Última] dddd', // Last week ( Last Monday at 2:30 AM )
+    sameElse: 'DD/MM/YYYY' // Everything else ( 7/10/2011 )
+})
 
 const htmlAttributes = {lang: 'pt-br', amp: undefined};
 

@@ -10,7 +10,6 @@ const Event = () => {
     const event = useMemo(() => ({
         name: "React + SSR + Firebase = ♥️",
         url: "https://react-firebase-ssr.ridermansb.dev/",
-        // description: "Exemplo usando React SSR rodando na estrutura do firebase cloud functions",
         description: "Você domina React e quer dar os próximos passos nessa tecnologia para melhorar a performance e o ranking do seu app? No próximo evento online promovido por e-Core codeLab, nossos especialistas de software irão falar sobre os prós e contras de SSR e como fazer o deploy de um app em React + SSR com Firebase, ferramenta que irá simplificar o seu trabalho. Junte-se a nós no dia 23/06, às 18h, para saber tudo sobre o tema: https://meet.google.com/ihj-odne-rse #wecore #reactjs #react",
         image: banner,
         startDate: dayjs(new Date(2020, 5, 23, 18, 0, 0)),
@@ -115,12 +114,16 @@ const Event = () => {
                     </dl>
                     <dl className="uk-description-list">
                         <dt className="uk-text-bold">Onde?</dt>
-                        <dd>{event.location}</dd>
+                        <dd>
+                            <a href={event.location} rel="noopener noreferrer" target="_blank">
+                                {event.location}
+                            </a>
+                        </dd>
                     </dl>
                     <dl className="uk-description-list">
                         <dt className="uk-text-bold">Quem?</dt>
                         <dd>
-                            {event.performer} / <a href={event.performer.url} rel="noopener noreferrer" target="_blank">{event.organizer.name}</a>
+                            <a href="https://about.me/ridermansb" rel="noopener noreferrer">{event.performer}</a>/ <a href={event.performer.url} rel="noopener noreferrer" target="_blank">{event.organizer.name}</a>
                         </dd>
                     </dl>
                 </div>
