@@ -87,6 +87,10 @@ Tools that can help you in some way
    > Pre-renders a web app into static HTML. Uses Headless Chrome to crawl all available links starting from the root.
  * > [pagespeed][pagespeed]
    > Test your page in all devices
+ * > [snyk][snyk]
+   > Enabling more than 400,000 developers to continuously find and fix vulnerabilities in open source libraries and containers
+ * > [pingdom.com][pingdom.com]
+   > Enter a URL to test the page load time, analyze it, and find bottlenecks.
 
 ### Great tools for SEO
 
@@ -121,3 +125,6 @@ Tools that can help you in some way
 [twitter-card-validator]: https://cards-dev.twitter.com/validator
 [data-highlighter]: https://www.google.com/webmasters/data-highlighter/u/0/tagger?sourceId=106074205&hl=en
 [markup-helper]: https://www.google.com/webmasters/markup-helper/u/0/tagger?sourceId=106075397
+[snyk]: https://snyk.io/
+[pingdom.com]: https://tools.pingdom.com/#5cb726db5c800000
+
