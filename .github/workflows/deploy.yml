@@ -230,10 +230,12 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: ${{ runner.os }}-build-functions-${{ needs.install.outputs.version }}
-          path: functions/dist          
+          path: functions-dist/
 
       - run: |
-          ls -la
+          zip -r public-ssr.zip -q -1 public-ssr/
+          zip -r public-csr.zip -q -1 public-csr/
+          zip -r functions-dist.zip -q -1 functions-dist/
           npm run release          
           
   deploy-ssr:
