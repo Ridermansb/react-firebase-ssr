@@ -188,10 +188,53 @@ jobs:
         with:
           name: ${{ runner.os }}-${{ github.job }}-${{ needs.install.outputs.version }}
           path: functions/dist
+
+  release:
+    runs-on: ubuntu-latest
+    needs: [build-ssr, build-csr, build-functions, install]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '10'
+      - name: Cache node_modules
+        id: cache-node_modules
+        uses: actions/cache@v2.0.0
+        with:
+          path: |
+            ~/.npm
+            node_modules
+            **/node_modules
+            ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+      - name: Cache functions node_modules
+        id: cache-functions-node_modules
+        uses: actions/cache@v2.0.0
+        with:
+          path: functions/node_modules
+          key: ${{ runner.os }}-node-functions-${{ hashFiles('functions/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-functions-
+
+      # Download all artifacts
+      - uses: actions/download-artifact@v2
+        with:
+          name: ${{ runner.os }}-build-ssr-${{ needs.build-ssr.outputs.version }}
+          path: public-ssr
+      - uses: actions/download-artifact@v2
+        with:
+          name: ${{ runner.os }}-build-csr-${{ needs.build-csr.outputs.version }}
+          path: public-csr
+      - uses: actions/download-artifact@v2
+        with:
+          name: ${{ runner.os }}-build-functions-${{ needs.install.outputs.version }}
+          path: functions/dist          
+
+      - run: npm run release          
           
   deploy-ssr:
     runs-on: ubuntu-latest
-    needs: [build-ssr, install]
+    needs: [release, build-ssr, install]
     env:
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
@@ -230,7 +273,7 @@ jobs:
 
   deploy-csr:
     runs-on: ubuntu-latest
-    needs: [build-csr, install]
+    needs: [release, build-csr, install]
     env:
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
@@ -269,7 +312,7 @@ jobs:
 
   deploy-functions:
     runs-on: ubuntu-latest
-    needs: [build-functions, install]
+    needs: [release, build-functions, install]
     env:
       FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       GCLOUD_PROJECT: ${{ secrets.GCLOUD_PROJECT }}
