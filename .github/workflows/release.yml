@@ -9,7 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - run: echo "Building..."
-        
+
+      - uses: chrnorm/deployment-action@releases/v1
+        name: Create GitHub deployment
+        id: deployment
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target_url: https://next.meve.ai/
+          environment: next
+          description: Stating (next)
+          
       - uses: dsaltares/fetch-gh-release-asset@master
         with:
           repo: "dsaltares/godot-wild-jam-18"
@@ -18,3 +27,21 @@ jobs:
           token: ${{ secrets.YOUR_TOKEN }}
 
       - run: ls -la
+        
+      - name: Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target_url: https://next.meve.ai/
+          state: "success"
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+
+      - name: Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@releases/v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target_url: https://next.meve.ai/
+          state: "failure"
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
