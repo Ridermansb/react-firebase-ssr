@@ -1,13 +1,12 @@
 {
-    "branches": { "name": "master", "prerelease": true },
     "plugins": [
         "@semantic-release/commit-analyzer",
         "@semantic-release/release-notes-generator",
         ["@semantic-release/github", {
             "assets": [
-                {"path": "./public-ssr.zip", "name": "ui-ssr-${nextRelease.version}", "label": "UI SSR Distribution"},
-                {"path": "./public-csr.zip", "name": "ui-css-${nextRelease.version}", "label": "UI CSR Distribution"},
-                {"path": "./functions-dist.zip", "name": "functions-${nextRelease.version}", "label": "Functions Distribution"}
+                {"path": "./public-ssr.zip", "name": "ui-ssr.zip", "label": "UI SSR Distribution v${nextRelease.version}"},
+                {"path": "./public-csr.zip", "name": "ui-css.zip", "label": "UI CSR Distribution v${nextRelease.version}"},
+                {"path": "./functions-dist.zip", "name": "functions.zip", "label": "Functions Distribution v${nextRelease.version}"}
             ]
         }]
     ]
