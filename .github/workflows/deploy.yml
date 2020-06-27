@@ -356,16 +356,3 @@ jobs:
         
     - name: Deploy to Firebase
       run: npm run deploy -- --only functions -f --non-interactive -m "Functions build ${{ needs.install.outputs.version }} by $GITHUB_ACTOR from GitHub $GITHUB_WORKFLOW action"
-
-#  audit:
-#    runs-on: ubuntu-latest
-#    needs: deploy
-#    steps:
-#    - name: Audit URLs using Lighthouse
-#      uses: treosh/lighthouse-ci-action@v3
-#      with:
-#        urls: https://react-firebase-ssr.ridermansb.dev/
-#        budgetPath: .github/workflows/budget.json
-#        uploadArtifacts: true
-#        configPath: .github/workflows/lighthouserc.json
-#        temporaryPublicStorage: true
