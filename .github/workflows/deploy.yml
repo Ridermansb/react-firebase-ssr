@@ -192,6 +192,8 @@ jobs:
   release:
     runs-on: ubuntu-latest
     needs: [build-ssr, build-csr, build-functions, install]
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
@@ -230,7 +232,9 @@ jobs:
           name: ${{ runner.os }}-build-functions-${{ needs.install.outputs.version }}
           path: functions/dist          
 
-      - run: npm run release          
+      - run: |
+          ls -la
+          npm run release          
           
   deploy-ssr:
     runs-on: ubuntu-latest

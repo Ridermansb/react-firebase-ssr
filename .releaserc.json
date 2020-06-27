@@ -4,7 +4,8 @@
         "@semantic-release/release-notes-generator",
         ["@semantic-release/github", {
             "assets": [
-                {"path": "public/**", "label": "UI Distribution"},
+                {"path": "public-ssr/**", "label": "UI SSR Distribution"},
+                {"path": "public-csr/**", "label": "UI CSR Distribution"},
                 {"path": "functions/dist/**", "label": "Functions Distribution"}
             ]
         }]
