@@ -4,9 +4,9 @@
         "@semantic-release/release-notes-generator",
         ["@semantic-release/github", {
             "assets": [
-                {"path": "./public-ssr.zip", "name": "ui-ssr.zip", "label": "UI SSR Distribution v${nextRelease.version}"},
-                {"path": "./public-csr.zip", "name": "ui-css.zip", "label": "UI CSR Distribution v${nextRelease.version}"},
-                {"path": "./functions-dist.zip", "name": "functions.zip", "label": "Functions Distribution v${nextRelease.version}"}
+                {"path": "./public-ssr.zip", "name": "ui-ssr-v${nextRelease.version}.zip", "label": "UI SSR Distribution"},
+                {"path": "./public-csr.zip", "name": "ui-css-v${nextRelease.version}.zip", "label": "UI CSR Distribution"},
+                {"path": "./functions-dist.zip", "name": "functions-v${nextRelease.version}.zip", "label": "Functions Distribution"}
             ]
         }]
     ]
