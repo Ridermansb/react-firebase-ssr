@@ -1,14 +1,19 @@
-> React template with SSR by using Firebase Cloud Functions
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Ridermansb/react-firebase-ssr/deploy?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Ridermansb/react-firebase-ssr/release?style=flat-square)
+![GitHub branch checks state](https://img.shields.io/github/checks-status/Ridermansb/react-firebase-ssr/master?style=flat-square)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/Ridermansb/react-firebase-ssr/deploy/master?style=flat-square)
+![GitHub milestones](https://img.shields.io/github/milestones/open/Ridermansb/react-firebase-ssr?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues-raw/Ridermansb/react-firebase-ssr?style=flat-square)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/Ridermansb/react-firebase-ssr/master?style=flat-square)
+![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/Ridermansb/react-firebase-ssr/master?style=flat-square)
 
+> React template with SSR by using Firebase Cloud Functions
 
 <p align="center">
     <img src="demo.png" />
 </p>
-<p align="center">
-    <a href="https://github.com/Ridermansb/react-firebase-ssr/actions?query=workflow%3Adeploy">
-        <img src="https://github.com/Ridermansb/react-firebase-ssr/workflows/deploy/badge.svg" alt="">
-    </a>
-</p>
+
+**Seel the deference bellow**
 
  * SSR Live: https://react-firebase-ssr.ridermansb.dev/
  * CSR Live: https://react-firebase-nossr.ridermansb.dev/
