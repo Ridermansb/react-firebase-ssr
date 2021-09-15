@@ -1,0 +1,6 @@
+[ver:1,total:540,branch:master]
+.github/workflows/dependabot.yml:205,1631714400:205,m
+webpack.production.js:180,1631714400:180,r
+.github/workflows/deploy.yml:80,1631714400:80,m
+.gtm/terminal.app:60,1631714400:60,r
+.git/COMMIT_EDITMSG:15,1631714400:15,r
