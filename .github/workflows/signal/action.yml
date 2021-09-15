@@ -1,0 +1,15 @@
+name: 'Thank You Action'
+description: 'Say "Thank You" to new pull requests'
+author: '[Your Name]'
+
+inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub token'
+    required: true
+  DEPENDENCIES:
+    description: 'steps.dependabot-metadata.outputs.updated-dependencies-json'
+    required: true
+
+runs:
+  using: 'node12'
+  main: './.github/workflows/signal/main.js'
