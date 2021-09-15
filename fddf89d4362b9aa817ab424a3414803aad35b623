@@ -1,0 +1,4 @@
+[ver:1,total:180,branch:master]
+signal/action.yml:90,1631718000:90,r
+package-lock.json:60,1631718000:60,r
+.github/workflows/dependabot.yml:30,1631718000:30,m
