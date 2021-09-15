@@ -1,6 +1,6 @@
-name: 'Thank You Action'
-description: 'Say "Thank You" to new pull requests'
-author: '[Your Name]'
+name: 'Signal App'
+description: 'Send signals to SSC'
+author: 'SSC'
 
 inputs:
   GITHUB_TOKEN:
@@ -12,4 +12,4 @@ inputs:
 
 runs:
   using: 'node12'
-  main: './.github/workflows/signal/main.js'
+  main: './signal/main.js'
