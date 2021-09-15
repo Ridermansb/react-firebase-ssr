@@ -2,7 +2,6 @@
 name: Dependabot Workflow
 on:
   pull_request_target:
-  workflow_dispatch:
 
 #permissions:
 # Downscope as necessary, since you now have a read-write token
