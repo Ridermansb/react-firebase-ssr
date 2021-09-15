@@ -3,13 +3,13 @@ description: 'Send signals to SSC'
 author: 'SSC'
 
 inputs:
-  GITHUB_TOKEN:
+  github_token:
     description: 'GitHub token'
     required: true
-  DEPENDENCIES:
+  dependencies:
     description: 'steps.dependabot-metadata.outputs.updated-dependencies-json'
     required: true
 
 runs:
   using: 'node12'
-  main: 'main.js'
+  main: 'dist/main.js'
