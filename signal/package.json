@@ -1,0 +1,16 @@
+{
+  "name": "signal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "build": "ncc build ./src/action.js -o dist/"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@actions/core": "^1.5.0",
+    "@actions/github": "^5.0.0",
+    "@vercel/ncc": "^0.31.1"
+  }
+}
