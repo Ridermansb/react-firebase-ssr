@@ -75,8 +75,6 @@ module.exports = (currentVersion) => {
                 new TerserJSPlugin({
                     exclude: /\/docs|\/coverage\//,
                     parallel: true,
-                    cache: true,
-                    sourceMap: true,
                     terserOptions: {
                         parse: {
                             ecma: 8,
@@ -117,7 +115,6 @@ module.exports = (currentVersion) => {
             ],
         },
         plugins: [
-            new webpack.optimize.OccurrenceOrderPlugin(),
             new CompressionPlugin({
                 filename: '[path].gz[query]',
                 algorithm: 'gzip',

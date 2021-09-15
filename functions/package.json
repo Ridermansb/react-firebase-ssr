@@ -30,9 +30,9 @@
         "cross-env": "^7.0.3",
         "firebase-functions-test": "^0.3.2",
         "ignore-loader": "^0.1.2",
-        "webpack": "^4.43.0",
-        "webpack-cli": "^3.3.11",
-        "webpack-node-externals": "^1.7.2"
+        "webpack": "^5.52.1",
+        "webpack-cli": "^4.8.0",
+        "webpack-node-externals": "^3.0.0"
     },
     "private": true
 }

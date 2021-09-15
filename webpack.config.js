@@ -3,11 +3,11 @@
 const fs = require('fs');
 const {join, resolve} = require('path');
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const ImageminPlugin = require('imagemin-webpack-plugin').default
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const {GitRevisionPlugin} = require('git-revision-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -43,7 +43,6 @@ module.exports = function (env, args) {
                 ],
             }),
             new MiniCssExtractPlugin({
-                publicPath: 'styles/',
                 ignoreOrder: true,
                 filename:
                     mode === 'production'
@@ -154,7 +153,7 @@ module.exports = function (env, args) {
                     }
                 ],
             }),
-            new webpack.HashedModuleIdsPlugin(),
+            new webpack.ids.HashedModuleIdsPlugin(),
             new ImageminPlugin({
                 disable: mode === 'production',
                 test: /.+\/public\\assets\/.*/gi,
@@ -192,7 +191,6 @@ module.exports = function (env, args) {
                         {
                             loader: MiniCssExtractPlugin.loader,
                             options: {
-                                hmr: false, // mode !== 'production' || process.env.NODE_ENV === 'development',
                                 esModule: true,
                             },
                         },
@@ -204,7 +202,6 @@ module.exports = function (env, args) {
                             loader: 'postcss-loader',
                             options: {
                                 sourceMap: true,
-                                ident: 'postcss',
                             },
                         },
                     ],
@@ -213,7 +210,7 @@ module.exports = function (env, args) {
                     test: /\.(gif|png|jpe?g)$/i,
                     use: {
                         loader: 'file-loader',
-                        query: {outputPath: 'assets/images/'},
+                        options: {outputPath: 'assets/images/'},
                     },
                 },
                 {
@@ -229,6 +226,6 @@ module.exports = function (env, args) {
         development: webpackDevelopmentConfig
     }
 
-    return merge.smart(defaultConfig, modeConfig[mode] || {});
+    return merge(defaultConfig, modeConfig[mode] || {});
 
 }
