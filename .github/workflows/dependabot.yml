@@ -10,25 +10,22 @@ on:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-#    if: ${{ github.actor == 'dependabot[bot]' }}
+    if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           
-      - run: |
-          ls -la ./.github/actions/signal/dist
-          cat ./.github/actions/signal/dist/index.js
-          
+      - name: Dependabot metadata
+        id: dependabot-metadata
+        uses: dependabot/fetch-metadata@v1.1.1
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
       - name: Signal SSC
         uses: ./.github/actions/signal
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          dependencies: "Hi from action"
+          dependencies: ${{ steps.dependabot-metadata.outputs.updated-dependencies-json }}
           
-      - name: Dependabot metadata
-        id: metadata
-        uses: dependabot/fetch-metadata@v1.1.1
-        with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
