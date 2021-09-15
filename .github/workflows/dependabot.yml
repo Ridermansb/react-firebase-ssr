@@ -3,7 +3,7 @@ name: Dependabot Workflow
 on:
   pull_request_target
 
-permissions:
+#permissions:
 # Downscope as necessary, since you now have a read-write token
 
 jobs:
