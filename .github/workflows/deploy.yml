@@ -1,6 +1,7 @@
 name: deploy
 
 on:
+  workflow_dispatch:
   milestone:
     types: [closed]
     branches:
