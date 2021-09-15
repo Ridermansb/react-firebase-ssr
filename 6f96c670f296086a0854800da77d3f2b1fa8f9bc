@@ -1,0 +1,7 @@
+[ver:1,total:240,branch:master]
+.gtm/terminal.app:90,1631710800:90,r
+.git/COMMIT_EDITMSG:60,1631710800:60,r
+.github/workflows/deploy.yml:50,1631710800:50,m
+functions/package.json:20,1631710800:20,m
+functions/package-lock.json:10,1631710800:10,m
+package.json:10,1631710800:10,m
