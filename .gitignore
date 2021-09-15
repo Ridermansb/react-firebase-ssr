@@ -331,3 +331,4 @@ public/
 # End of https://www.toptal.com/developers/gitignore/api/firebase
 
 .lighthouseci
+/.gtm/
