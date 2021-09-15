@@ -17,6 +17,10 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           
+      - run: |
+          ls -la ./.github/actions/signal/dist
+          cat ./.github/actions/signal/dist/index.js
+          
       - name: Signal SSC
         uses: ./.github/actions/signal
         with:
