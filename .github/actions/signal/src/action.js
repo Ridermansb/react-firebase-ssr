@@ -3,7 +3,7 @@ const core = require('@actions/core');
 
 async function run() {
     const dependencies = core.getInput('dependencies');
-    console.log('Hello, world! => ' + dependencies);
+    console.log('Hello, world! => ' + dependencies, dependencies);
 }
 
 run();
