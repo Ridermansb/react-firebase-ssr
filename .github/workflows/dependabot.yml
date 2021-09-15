@@ -23,7 +23,7 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           
       - name: Signal          
-        uses: .
+        uses: ./
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           dependencies: "Hi from action"
