@@ -54,6 +54,7 @@
         "@babel/runtime-corejs3": "^7.15.4",
         "@hot-loader/react-dom": "^16.13.0",
         "@semantic-release/github": "^7.2.3",
+        "@webpack-cli/serve": "^1.5.2",
         "autoprefixer": "^9.8.4",
         "babel-loader": "^8.2.2",
         "babel-plugin-module-resolver": "^4.1.0",
