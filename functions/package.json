@@ -7,7 +7,7 @@
     },
     "main": "dist/index.js",
     "engines": {
-        "node": "10"
+        "node": "12"
     },
     "dependencies": {
         "compression": "^1.7.4",

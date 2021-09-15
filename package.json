@@ -97,7 +97,7 @@
         "webpack-pwa-manifest": "^4.2.0"
     },
     "engines": {
-        "node": "10"
+        "node": "12"
     },
     "config": {
         "commitizen": {
