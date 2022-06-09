@@ -13,10 +13,7 @@ jobs:
         with:
           node-version: '12'
 
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      - uses: actions/checkout@v3
 
       - name: Cache node_modules
         id: cache-node_modules
@@ -46,6 +43,8 @@ jobs:
         run: npm ci --prefer-offline --no-audit --progress=false
         working-directory: ./functions
         
+      - run: echo ${{ secrets.TRUNK_TOKEN }}
+
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1
         with:
