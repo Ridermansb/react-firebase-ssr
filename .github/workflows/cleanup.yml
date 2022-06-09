@@ -1,8 +1,7 @@
 name: cleanup
 
 on:
-  schedule:
-    - cron:  '0 0 1/10 * *' # At 00:00 on every 10th day-of-month from 1 through 31.”
+  workflow_dispatch:
 
 jobs:
   delete-artifacts:
