@@ -1,0 +1,4 @@
+[ver:1,total:300,branch:master]
+.gtm/terminal.app:120,1654790400:120,r
+.github/workflows/dev-check.yml:120,1654790400:120,r
+.github/workflows/cleanup.yml:60,1654790400:60,m
