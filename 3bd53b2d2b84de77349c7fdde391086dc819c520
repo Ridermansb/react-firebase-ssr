@@ -1,0 +1,4 @@
+[ver:1,total:900,branch:master]
+.gtm/terminal.app:420,1654783200:180,1654790400:240,r
+.github/workflows/dev-check.yml:390,1654790400:390,m
+.github/workflows/deploy.yml:90,1654790400:90,r
