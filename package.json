@@ -86,7 +86,7 @@
         "react-hot-loader": "^4.13.0",
         "robotstxt-webpack-plugin": "^7.0.0",
         "script-ext-html-webpack-plugin": "^2.1.5",
-        "semantic-release": "^17.1.1",
+        "semantic-release": "^19.0.3",
         "sharp": "^0.29.1",
         "terser-webpack-plugin": "^5.2.4",
         "webpack": "^5.52.1",
