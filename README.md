@@ -96,6 +96,8 @@ Tools that can help you in some way
    > Enabling more than 400,000 developers to continuously find and fix vulnerabilities in open source libraries and containers
  * > [pingdom.com][pingdom.com]
    > Enter a URL to test the page load time, analyze it, and find bottlenecks.
+ * > [Codeball.ai](https://codeball.ai/)
+   > Approve PRs using AI.
 
 ### Great tools for SEO
 
