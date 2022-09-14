@@ -1,0 +1,10 @@
+tasks:
+  - init: npm install
+    command: npm run start
+
+ports:
+  - port: 7003
+    visibility: private
+    onOpen: open-preview
+
+

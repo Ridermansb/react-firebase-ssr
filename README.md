@@ -7,6 +7,13 @@
 ![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/Ridermansb/react-firebase-ssr/master?style=flat-square)
 ![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/Ridermansb/react-firebase-ssr/master?style=flat-square)
 
+<a href="https://gitpod.io/#Ridermansb/react-firebase-ssr">
+  <img
+    src="https://img.shields.io/badge/Contribute%20with-Gitpod-908a85?logo=gitpod"
+    alt="Contribute with Gitpod"
+  />
+</a>
+
 > React template with SSR by using Firebase Cloud Functions
 
 <p align="center">
