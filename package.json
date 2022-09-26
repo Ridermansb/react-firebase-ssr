@@ -70,7 +70,7 @@
         "dotenv": "^10.0.0",
         "favicons-webpack-plugin": "^5.0.2",
         "file-loader": "^6.2.0",
-        "firebase-tools": "^9.18.0",
+        "firebase-tools": "^9.23.3",
         "git-cz": "^4.7.6",
         "git-revision-webpack-plugin": "^5.0.0",
         "glob": "^7.1.7",
