@@ -76,7 +76,7 @@
         "glob": "^7.1.7",
         "html-webpack-plugin": "^5.3.2",
         "husky": "^7.0.2",
-        "imagemin-webpack-plugin": "^2.1.5",
+        "imagemin-webpack-plugin": "^2.4.2",
         "lighthouse": "^8.4.0",
         "lighthouse-plugin-field-performance": "^2.2.1",
         "mini-css-extract-plugin": "^2.3.0",
